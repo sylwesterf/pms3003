@@ -1,0 +1,11 @@
+# update packages
+$ sudo apt-get update
+
+# get project's files
+$ git clone https://github.com/sylwesterf/pms3003.git
+
+# install dependencies
+$ sudo pip install -r requirements.txt
+
+# enable uart
+$ sudo echo "enable_uart=1" >> /boot/config.txt
