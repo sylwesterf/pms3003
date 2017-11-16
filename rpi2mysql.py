@@ -19,7 +19,7 @@ cur = db.cursor()
 
 # call a PMSensor class
 # 0 for indoor sensing, 1 for outdoor
-pm = PMSensor(0)
+pm = PMSensor(1)
 	
 # get PM1, PM2.5, PM10 values
 pm1, pm25, pm10 = pm.read_pm()
