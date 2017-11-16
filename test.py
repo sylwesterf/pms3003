@@ -5,7 +5,7 @@ from pms3003 import PMSensor
 
 # call a PMSensor class
 # 0 for indoor sensing, 1 for outdoor
-pm = PMSensor(0)
+pm = PMSensor(1)
 	
 # print PM1, PM2.5, PM10 values
 print(pm.read_pm())
