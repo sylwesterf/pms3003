@@ -9,21 +9,8 @@ library(plotly)
 # set up a server variable
 server <- function(input, output, session) {
   
-  # set up mysql connectivity
-  conn <- dbConnect(
-    drv = RMySQL::MySQL(),
-    host='xxx',
-    user='xxx',
-    password='xxx',
-    dbname='xxx',
-    port=3306)
-  on.exit(dbDisconnect(conn), add = TRUE)
-  
-  # produce a query
-  query <- paste0("select dt, pm1, pm25, pm10 from fct_pm")
-  
-  # store retrieved data
-  data <- dbGetQuery(conn, query)
+  # get data
+  data <- get_table("pms3003")
   
   # define output object
   output$plot <- renderPlotly({
