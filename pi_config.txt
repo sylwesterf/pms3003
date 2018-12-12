@@ -4,7 +4,8 @@ $ sudo apt-get update
 # get project's files
 $ git clone https://github.com/sylwesterf/pms3003.git
 
-# install dependencies
+# install dependencies for mysql or dynamodb
+# cd mysql OR cd dynamodb
 $ sudo pip install -r requirements.txt
 
 # enable uart
