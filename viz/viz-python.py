@@ -10,7 +10,6 @@ from dash.dependencies import Output, Event
 import plotly
 import plotly.graph_objs as go
 
-# config boto3 first
 # get the service resource
 dynamodb = boto3.resource('dynamodb')
 
@@ -51,7 +50,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         ),
 		
 	# last updated note
-	html.Div(children='Ostatni pomiar wykonano ' + str(1), style={
+	html.Div(id='update-date', style={
         'textAlign': 'right',
         'color': colors['text'],
 		'fontSize': 12
@@ -101,8 +100,20 @@ def update_graph():
 	data = [trace0, trace1, trace2]
 
 	# return quasi-live data for graph's figure attribute
-	return {'data': data,'layout' : go.Layout(yaxis = dict(title = "µg/m3"))}
+	return {'data': data,'layout' : go.Layout(yaxis = dict(title = "µg/m3")),'children':'testat'}
 
+@app.callback(Output('update-date', 'children'),
+			  events=[Event('graph-update', 'interval')])
+
+def update_date():
+	
+	# scan the table
+	response = table.scan()
+	data = response['Items']
+	lastdt = 'Ostatni pomiar wykonano ' + str(data[0]['dt'])
+		
+	return lastdt
+	
 # run
 if __name__ == '__main__':
     app.run_server(debug=True)
