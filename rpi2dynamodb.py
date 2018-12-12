@@ -23,10 +23,10 @@ dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('pms3003')
 table.put_item(
 	Item={
-        'dt' : pm_date,
+	'dt' : pm_date,
 	'pm1' : pm1,
-        'pm25' : pm25,
-        'pm10' : pm10
+	'pm25' : pm25,
+	'pm10' : pm10
     }
 )
 
