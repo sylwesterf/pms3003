@@ -9,8 +9,5 @@ $ sudo pip install -r mysql/requirements.txt
 # OR
 $ sudo pip install -r dynamodb/requirements.txt
 
-# for viz in python install additional dependencies
-$ sudo pip install -r viz/py/requirements.txt
-
 # enable uart
 $ sudo echo "enable_uart=1" >> /boot/config.txt
