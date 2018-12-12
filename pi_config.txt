@@ -5,8 +5,12 @@ $ sudo apt-get update
 $ git clone https://github.com/sylwesterf/pms3003.git
 
 # install dependencies for mysql or dynamodb
-# cd mysql OR cd dynamodb
-$ sudo pip install -r requirements.txt
+$ sudo pip install -r mysql/requirements.txt
+# OR
+$ sudo pip install -r dynamodb/requirements.txt
+
+# for viz in python install additional dependencies
+$ sudo pip install -r viz/py/requirements.txt
 
 # enable uart
 $ sudo echo "enable_uart=1" >> /boot/config.txt
