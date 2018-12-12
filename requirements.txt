@@ -1,0 +1,8 @@
+serial
+MySQLdb
+plotly
+boto3
+pandas
+dash
+dash_core_components
+dash_html_components
