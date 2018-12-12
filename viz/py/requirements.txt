@@ -1,0 +1,6 @@
+boto3
+plotly
+pandas
+dash
+dash_core_components
+dash_html_components
