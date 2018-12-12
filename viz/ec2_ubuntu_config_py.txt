@@ -1,0 +1,4 @@
+flask?
+
+# install additional dependencies
+$ sudo pip install -r viz/py/requirements.txt
