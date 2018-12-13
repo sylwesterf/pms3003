@@ -1,6 +1,5 @@
 # load required libraries
 library(shiny)
-library(aws.dynamodb)
 library(plotly)
 library(rPython)
 
