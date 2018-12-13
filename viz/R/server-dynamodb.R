@@ -1,16 +1,15 @@
-#install.packages("aws.dynamodb", repos = c(cloudyr = "http://cloudyr.github.io/drat", getOption("repos")))
-#https://cran.r-project.org/web/packages/aws.ec2metadata/index.html
-
 # load required libraries
 library(shiny)
 library(aws.dynamodb)
 library(plotly)
+library(rPython)
 
 # set up a server variable
 server <- function(input, output, session) {
   
   # get data
-  data <- get_table("pms3003")
+  python.load("dynamodb-python.py")
+  data <- as.data.frame(python.get('df'))
   
   # define output object
   output$plot <- renderPlotly({
