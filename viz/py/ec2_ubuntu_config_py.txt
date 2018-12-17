@@ -1,4 +1,5 @@
-flask?
+# install flask
+$ sudo pip install flask
 
 # install additional dependencies
 $ sudo pip install -r viz/py/requirements.txt
