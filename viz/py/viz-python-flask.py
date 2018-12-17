@@ -45,10 +45,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 		animate = True
     ),
 	
-	# graph update handler
+	# graph update handler, every 15mins
 	dcc.Interval(
             id='graph-update',
-            interval=1*1000
+            interval=900*1000	
         ),
 		
 	# last updated note
