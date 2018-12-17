@@ -1,3 +1,4 @@
+aws cli
 boto3
 plotly
 pandas
