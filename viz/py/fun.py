@@ -52,4 +52,4 @@ def generate_graph(table):
 	lastdt = 'Ostatni pomiar wykonano ' + str(df.index[-1])
 
 	# return quasi-live data for graph's figure attribute
-	return {'data': data,'layout' : go.Layout(yaxis = dict(title = "µg/m3")),'lastdt': lastdt}
+	return {'data': data, 'lastdt': lastdt}
