@@ -10,6 +10,7 @@ import dash_html_components as html
 from dash.dependencies import Output, Event
 import plotly
 import plotly.graph_objs as go
+from fun import dynamo_scan, generate_graph
 
 # get the service resource
 dynamodb = boto3.resource('dynamodb')
@@ -27,94 +28,70 @@ colors = {
     'text': '#111101'
 }
 
-# actual dash app layout definition
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+# function for app layout call
+def serve_layout():
+    
+    # dash app layout definition
+    serve = html.Div(style={'backgroundColor': colors['background']}, children=[
 
-	# title
-    html.H1(
-        children='Zanieczyszczenie powietrza',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']
-        }
-    ),
-	
-	# graph
-    dcc.Graph(
-        id='live-graph',
-		animate = True
-    ),
-	
-	# graph update handler, every 15mins
-	dcc.Interval(
-            id='graph-update',
-            interval=900*1000	
+        # title
+        html.H1(
+            children='Zanieczyszczenie powietrza',
+            style={
+                'textAlign': 'center',
+                'color': colors['text']
+            }
         ),
-		
-	# last updated note
-	html.Div(id='update-date', style={
-        'textAlign': 'right',
-        'color': colors['text'],
-		'fontSize': 12
-    })
-])
+        
+        # graph
+        dcc.Graph(
+            id = 'live-graph',
+            animate = True,
+            figure = go.Figure(
+                data = generate_graph(table)['data'],
+                layout = go.Layout(yaxis = dict(title = "µg/m3"))
+            )
+        ),
+            
+        # last updated date
+        html.Div(id='update-date', children = generate_graph(table)['lastdt'], style={
+            'textAlign': 'right',
+            'color': colors['text'],
+            'fontSize': 12
+        }),
+
+        # event update handler
+        dcc.Interval(
+                id='event-update',
+                interval=4*1000
+        )
+    ])
+
+    return serve
+
+# call layout function - enables data refresh on page refresh
+app.layout = serve_layout
 
 # app callback for graph update
 @app.callback(Output('live-graph', 'figure'),
-              events=[Event('graph-update', 'interval')])
+              events=[Event('event-update', 'interval')])
 			  
 # function for the graph udpate
 def update_graph():
+    
+	# re-scan the table
+	return generate_graph(table)
 
-	# scan the table
-	response = table.scan()
-	data = response['Items']
-	
-	# create a pandas dataframe, wrangle the data
-	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10']).sort_values('dt').set_index('dt').astype(int)
-	df.index = pd.to_datetime(df.index)
-
-	# trace0 - pm1
-	trace0 = plotly.graph_objs.Scatter(
-		x=df.index,
-		y=df['pm1'],
-		name='pm1',
-		mode= 'lines+markers'
-	)
-	
-	# trace1 - pm2.5
-	trace1 = plotly.graph_objs.Scatter(
-		x=df.index,
-		y=df['pm25'],
-		name='pm2.5',
-		mode= 'lines+markers'
-	)
-	
-	# trace2 - pm10
-	trace2 = plotly.graph_objs.Scatter(
-		x=df.index,
-		y=df['pm10'],
-		name='pm10',
-		mode= 'lines+markers'
-	)
-	
-	# combine lines
-	data = [trace0, trace1, trace2]
-
-	# return quasi-live data for graph's figure attribute
-	return {'data': data,'layout' : go.Layout(yaxis = dict(title = "µg/m3")),'children':'testat'}
-
+# app callback for lastdt update
 @app.callback(Output('update-date', 'children'),
-			  events=[Event('graph-update', 'interval')])
+			  events=[Event('event-update', 'interval')])
 
+# function for lastdt update
 def update_date():
 	
-	# scan the table
-	response = table.scan()
-	data = response['Items']
-	lastdt = 'Ostatni pomiar wykonano ' + str(data[0]['dt'])
-		
-	return lastdt
+	# re-scan the table and get last update dt
+    lastdt = generate_graph(table)['lastdt']
+    return lastdt
 	
 # run
 if __name__ == '__main__':
