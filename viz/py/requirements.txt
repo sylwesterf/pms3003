@@ -1,4 +1,4 @@
-awscli
+flask
 boto3
 plotly
 pandas
