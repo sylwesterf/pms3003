@@ -1,5 +1,4 @@
-# install flask
-$ sudo pip install flask
+# to do
 
 # install additional dependencies
 $ cd pms3003
