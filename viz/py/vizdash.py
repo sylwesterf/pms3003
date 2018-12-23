@@ -12,7 +12,7 @@ import plotly.graph_objs as go
 from fun import dynamo_scan, generate_graph
 
 # get the service resource
-dynamodb = boto3.resource('dynamodb', , region = 'eu-central-1')
+dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
 
 # instantiate a table resource object 
 table = dynamodb.Table('pms3003')
