@@ -1,5 +1,5 @@
 #!/bin/python
-from app import server
+from vizflask import server
 
 if __name__ == "__main__":
     server.run()
