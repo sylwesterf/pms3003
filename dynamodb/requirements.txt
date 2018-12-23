@@ -1,2 +1,3 @@
 pyserial
 boto3
+awscli
