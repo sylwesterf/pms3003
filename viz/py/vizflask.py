@@ -92,7 +92,3 @@ def update_date():
 	# re-scan the table and get last update dt
     lastdt = generate_graph(table)['lastdt']
     return lastdt
-	
-# run
-if __name__ == '__main__':
-    app.run_server(host="0.0.0.0", port=80)
