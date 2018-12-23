@@ -1,5 +1,0 @@
-# to do
-
-# install additional dependencies
-$ cd pms3003
-$ sudo pip install -r viz/py/requirements.txt
