@@ -2,7 +2,7 @@
 #yum update
 
 # define flask app directory
-$flaskdir="/opt/pms3003/"
+flaskdir="/opt/pms3003/"
 
 # install nginx and git
 yum install nginx, git
