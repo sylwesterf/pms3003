@@ -1,4 +1,8 @@
+#!./env/bin/python
 #yum update
+
+# define flask app directory
+$flaskdir="/opt/pms3003/"
 
 # install nginx and git
 yum install nginx, git
@@ -13,8 +17,7 @@ rm -f get-pip.py
 pip install virtualenv
 
 # create flask virtual environment
-mkdir /opt/pms3003/
-cd /opt/pms3003/
+mkdir $flaskdir && cd $flaskdir
 virtualenv flask
 
 # get code from github
@@ -26,5 +29,5 @@ cp pms3003/viz/py/{fun.py,requirements.txt,vizflask.py,wsgi.py} .
 # run activate script
 source ./flask/bin/activate
 
-# install flask app requirements
-pip install -r requirements.txt
+# activate script flask venv, install flask app requirements and run wsgi server
+/bin/bash -c ". /opt/pms3003/flaskr/bin/activate; pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:server &"
