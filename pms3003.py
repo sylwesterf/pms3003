@@ -1,5 +1,6 @@
 #!bin/python
 import serial
+import time
 
 class PMSensor():
 	
@@ -14,12 +15,15 @@ class PMSensor():
 		# hardcode the baudrate
 		self.baudrate = 9600
 		
+		# enable software flow control.
+		self.xonxoff = True
+		
 		self.serial = None
 
 	def open_port(self):
 	
 		# open serial port
-		self.serial = serial.Serial(self.port, baudrate=self.baudrate)
+		self.serial = serial.Serial(self.port, baudrate=self.baudrate, xonxoff=self.xonxoff)
 
 	def fixed_bytes(self):
 		
@@ -61,6 +65,17 @@ class PMSensor():
 		
 		# return data
 		return values
+	
+	def write_serial(self, cmd, timeout=0):
+		
+		# open serial port
+		self.open_port()
+		
+		# writes binary data to the serial port
+		write = self.serial.write(cmd)
+		
+		# set timeout
+		time.sleep(timeout)
 
 	def read_pm(self):
 		
@@ -68,7 +83,10 @@ class PMSensor():
 		# to colect the data coming from the sensor
 		
 		# open serial port
-		self.open_port()
+		#self.open_port()
+		
+		# wakeup
+		self.write_serial('BM\xe4\x00\x01\x01t', 60)
 		
 		while True:
 			# the number of bytes in the input buffer should be non-zero to avoid errors
@@ -79,6 +97,12 @@ class PMSensor():
 				
 					# get the pm values
 					data = self.read_serial()
+				
+				# passive
+				self.write_serial('BM\xe1\x00\x00\x01p')
+				
+				# sleep
+				self.write_serial('BM\xe4\x00\x00\x01s')
 				
 				# data read-out
 				return data
