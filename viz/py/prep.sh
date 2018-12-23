@@ -1,12 +1,11 @@
 #!./env/bin/python
-#yum update
 
 # define flask app directory
 flaskdir="/opt/pms3003/"
 
 # install nginx and git
-yum install nginx, git
-amazon-linux-extras install nginx1.12
+yum install nginx, git -y
+amazon-linux-extras install nginx1.12 -y
 
 # get pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
