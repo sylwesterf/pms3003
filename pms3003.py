@@ -100,10 +100,10 @@ class PMSensor():
 		
 		# measure pm n-times
 		n = 5
-		data = single_read()
+		data = self.single_read()
 		for i in range(1,n):
 			time.sleep(5)
-			data = np.append([data], [single_read()])
+			data = np.append([data], [self.single_read()])
 		
 		# get the average as int
 		avg = np.mean(data.reshape((n,3)), axis=0, dtype=int)
