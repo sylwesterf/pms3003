@@ -101,8 +101,11 @@ class PMSensor():
 		# wakeup sensor with 45sec timeout
 		self.write_serial('BM\xe4\x00\x01\x01t', 45)
 		
+		# put into active mode
+		self.write_serial('BM\xe1\x00\x01\x01q', 15)
+		
 		# measure pm n-times
-		n = 5
+		n = 10
 		data = self.single_read()
 		for i in range(1,n):
 			time.sleep(5)
