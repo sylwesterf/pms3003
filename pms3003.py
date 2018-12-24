@@ -80,6 +80,9 @@ class PMSensor():
 
 	def single_read(self):
 		
+		# open serial port
+		self.open_port()
+		
 		while True:
 			# the number of bytes in the input buffer should be non-zero to avoid errors
 			if self.serial.inWaiting() > 0:
@@ -115,8 +118,8 @@ class PMSensor():
 		self.write_serial('BM\xe4\x00\x00\x01s')
 		
 		# close serial port
-		self.close()
+		self.serial.close()
 		
 		# return averaged data
-		return avg
+		return list(avg)
 	
