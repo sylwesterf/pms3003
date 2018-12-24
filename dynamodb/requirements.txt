@@ -1,3 +1,4 @@
 pyserial
 boto3
 awscli
+numpy
