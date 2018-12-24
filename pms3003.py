@@ -1,6 +1,7 @@
 #!bin/python
 import serial
 import time
+import numpy as np
 
 class PMSensor():
 	
@@ -65,7 +66,7 @@ class PMSensor():
 		
 		# return data
 		return values
-	
+
 	def write_serial(self, cmd, timeout=0):
 		
 		# open serial port
@@ -77,16 +78,7 @@ class PMSensor():
 		# set timeout
 		time.sleep(timeout)
 
-	def read_pm(self):
-		
-		# combine open_port and read_serial methods 
-		# to colect the data coming from the sensor
-		
-		# open serial port
-		#self.open_port()
-		
-		# wakeup
-		self.write_serial('BM\xe4\x00\x01\x01t', 60)
+	def single_read(self):
 		
 		while True:
 			# the number of bytes in the input buffer should be non-zero to avoid errors
@@ -98,12 +90,33 @@ class PMSensor():
 					# get the pm values
 					data = self.read_serial()
 				
-				# passive
-				self.write_serial('BM\xe1\x00\x00\x01p')
-				
-				# sleep
-				self.write_serial('BM\xe4\x00\x00\x01s')
-				
 				# data read-out
 				return data
+	
+	def read_pm(self):
 		
+		# wakeup sensor with 45sec timeout
+		self.write_serial('BM\xe4\x00\x01\x01t', 45)
+		
+		# measure pm n-times
+		n = 5
+		data = single_read()
+		for i in range(1,n):
+			time.sleep(5)
+			data = np.append([data], [single_read()])
+		
+		# get the average as int
+		avg = np.mean(data.reshape((n,3)), axis=0, dtype=int)
+		
+		# put the sensor in the passive mode
+		self.write_serial('BM\xe1\x00\x00\x01p')
+		
+		# standby mode, aka. sleep
+		self.write_serial('BM\xe4\x00\x00\x01s')
+		
+		# close serial port
+		self.close()
+		
+		# return averaged data
+		return avg
+	
