@@ -108,11 +108,15 @@ class PMSensor():
 		n = 10
 		data = self.single_read()
 		for i in range(1,n):
-			time.sleep(5)
+			time.sleep(10)
 			data = np.append([data], [self.single_read()])
 		
+		# reject outliers
+                data = data.reshape((n,3))
+                data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
+
 		# get the average as int
-		avg = np.mean(data.reshape((n,3)), axis=0, dtype=int)
+		avg = np.mean(data, axis=0, dtype=int)
 		
 		# put the sensor in the passive mode
 		self.write_serial('BM\xe1\x00\x00\x01p')
