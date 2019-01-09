@@ -124,5 +124,5 @@ class PMSensor():
 		self.serial.close()
 		
 		# return averaged data
-		return list(avg)
+		return avg
 	
