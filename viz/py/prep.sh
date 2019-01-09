@@ -1,4 +1,4 @@
-#!./env/bin/python
+#!/usr/bin/env bash
 
 # define flask app directory
 flaskdir="/opt/pms3003/"
