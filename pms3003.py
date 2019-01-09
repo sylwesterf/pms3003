@@ -59,7 +59,7 @@ class PMSensor():
 			pm10 = int(data_hex[24] + data_hex[25] + data_hex[26] + data_hex[27], 16)
         
 		# store values in a list
-		values = [pm1, pm10, pm25]
+		values = [pm1, pm25, pm10]
         
 		# close serial port
 		self.serial.close()
