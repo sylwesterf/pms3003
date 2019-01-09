@@ -19,22 +19,31 @@ pm1, pm25, pm10 = pm.read_pm()
 # get time
 pm_date = (time.strftime('%Y-%m-%d ') + time.strftime('%H:%M:%S'))
 
-# insert statement
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('pms3003')
-table.put_item(
-	Item={
-	'dt' : pm_date,
-	'pm1' : pm1,
-	'pm25' : pm25,
-	'pm10' : pm10
-    }
-)
-
 # write to csv
-with open('/home/projects/pms3003/pm-archive.csv','a+') as f:
+with open('pm-archive.csv','a+') as f:
  writer = csv.writer(f)
  writer.writerow([pm_date,pm1,pm25,pm10])
+
+# write to dynamodb table
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('pms3003')
+
+try:
+	# insert the data
+	table.put_item(
+		Item={
+		'dt' : pm_date,
+		'pm1' : pm1,
+		'pm25' : pm25,
+		'pm10' : pm10
+	    }
+	)
+	
+except Exception:
+	# rollback in case of error
+	with open('pm-not-loaded.csv','a+') as fn:
+	 writer = csv.writer(fn)
+	 writer.writerow([pm_date,pm1,pm25,pm10])
 
 # sending SNS notification about new load
 #client = boto3.client('sns')
