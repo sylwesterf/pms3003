@@ -1,6 +1,7 @@
 #!/bin/python
 import time
 import boto3
+import csv
 from pms3003 import PMSensor
 
 # first run aws configure and set AWS Access Key ID and AWS Secret Access Key
@@ -29,6 +30,11 @@ table.put_item(
 	'pm10' : pm10
     }
 )
+
+# write to csv
+with open('/home/projects/pms3003/pm-archive.csv','a+') as f:
+ writer = csv.writer(f)
+ writer.writerow([pm_date,pm1,pm25,pm10])
 
 # sending SNS notification about new load
 #client = boto3.client('sns')
