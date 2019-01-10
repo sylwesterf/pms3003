@@ -46,7 +46,7 @@ def serve_layout():
         # graph
         dcc.Graph(
             id = 'live-graph',
-            animate = True,
+            animate = False,
             figure = go.Figure(
                 data = generate_graph(table)['data'],
                 layout = go.Layout(yaxis = dict(title = "µg/m3"))
