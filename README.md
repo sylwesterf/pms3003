@@ -26,6 +26,7 @@ sudo python test.py
 EC2 - Flask:
 
 ```sh
+# just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
 sudo bash prep.sh
 rm prep.sh
