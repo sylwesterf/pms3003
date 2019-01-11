@@ -5,6 +5,7 @@ This project consists of two parts:
 - solution for measurement collection and data visualization (MySQL/DynamoDB + R Shiny/Flask)
 
 ![](Capture.PNG)
+![](Capture2.png)
 
 ## Installation
 
