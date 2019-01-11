@@ -12,11 +12,6 @@ On Raspberry Pi:
 # download project files
 sudo git clone https://github.com/sylwesterf/pms3003.git
 
-# get pip
-#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-#python get-pip.py
-#rm -f get-pip.py
-
 # install dependencies for mysql or dynamodb
 sudo pip install -r mysql/requirements.txt
 # OR
