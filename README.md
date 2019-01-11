@@ -2,24 +2,31 @@
 
 This project consists of two parts:
 - air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
-- solution for measurement collection and data visualization (MySQL/DynamoDB + R Shiny/Flask)
+- solution for measurement collection and data visualization (AWS MySQL/DynamoDB + R Shiny/Flask hosted on EC2)
 
 ## Installation
 
-On Raspberry Pi:
+Raspberry Pi:
 
 ```sh
 # download project files
 sudo git clone https://github.com/sylwesterf/pms3003.git
 
-# install dependencies for mysql or dynamodb
-sudo pip install -r mysql/requirements.txt
-# OR
+# install dependencies for dynamodb
 sudo pip install -r dynamodb/requirements.txt
+# run aws configure and set AWS Access Key ID and AWS Secret Access Key
 
 # enable uart
 sudo echo "enable_uart=1" >> /boot/config.txt
 
 # run a test
 sudo python test.py
+```
+
+EC2 - Flask:
+
+```sh
+curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
+sudo bash prep.sh
+rm prep.sh
 ```
