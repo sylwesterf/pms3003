@@ -5,7 +5,6 @@ import csv
 from pms3003 import PMSensor
 
 # first run aws configure and set AWS Access Key ID and AWS Secret Access Key
-# AWS STS or user with DynamoDB write Policy
 
 # perform a data load
 
