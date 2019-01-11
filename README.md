@@ -13,7 +13,7 @@ Raspberry Pi:
 sudo git clone https://github.com/sylwesterf/pms3003.git
 
 # install dependencies for dynamodb
-sudo pip install -r dynamodb/requirements.txt
+sudo pip install -r requirements.txt
 # run aws configure and set AWS Access Key ID and AWS Secret Access Key
 
 # enable uart
