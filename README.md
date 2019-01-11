@@ -1,4 +1,4 @@
-# Product Name
+# Environmental monitoring station 
 > Short blurb about what your product does.
 
 One to two paragraph statement about your product and what it does.
@@ -11,12 +11,6 @@ OS X & Linux:
 
 ```sh
 npm install my-crazy-module --save
-```
-
-Windows:
-
-```sh
-edit autoexec.bat
 ```
 
 ## Usage example
