@@ -40,7 +40,7 @@ try:
 	)
 	
 except Exception:
-	# rollback in case of error
+	# write to csv in case of error
 	with open('pm-not-loaded.csv','a+') as fn:
 	 writer = csv.writer(fn)
 	 writer.writerow([pm_date,pm1,pm25,pm10])
