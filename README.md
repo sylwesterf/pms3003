@@ -23,5 +23,8 @@ sudo pip install -r mysql/requirements.txt
 sudo pip install -r dynamodb/requirements.txt
 
 # enable uart
-$ sudo echo "enable_uart=1" >> /boot/config.txt
+sudo echo "enable_uart=1" >> /boot/config.txt
+
+# run a test
+sudo python test.py
 ```
