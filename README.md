@@ -31,3 +31,6 @@ curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh 
 sudo bash prep.sh
 rm prep.sh
 ```
+
+## Acknowledgments
+- https://github.com/Thomas-Tsai/pms3003-g3
