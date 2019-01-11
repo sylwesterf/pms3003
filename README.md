@@ -4,7 +4,7 @@ This project consists of two parts:
 - air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
 - solution for measurement collection and data visualization (MySQL/DynamoDB + R Shiny/Flask)
 
-![](Capture.png)
+![](Capture.PNG)
 
 ## Installation
 
