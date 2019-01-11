@@ -9,7 +9,7 @@ This project consists of two parts:
 On Raspberry Pi:
 
 ```sh
-# get project files
+# download project files
 sudo git clone https://github.com/sylwesterf/pms3003.git
 
 # get pip
