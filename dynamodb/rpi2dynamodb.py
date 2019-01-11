@@ -20,7 +20,7 @@ pm1, pm25, pm10 = pm.read_pm()
 pm_date = (time.strftime('%Y-%m-%d ') + time.strftime('%H:%M:%S'))
 
 # write to csv
-with open('pm-archive.csv','a+') as f:
+with open('/path/to/csv/file/pm-archive.csv','a+') as f:
  writer = csv.writer(f)
  writer.writerow([pm_date,pm1,pm25,pm10])
 
@@ -41,7 +41,7 @@ try:
 	
 except Exception:
 	# write to csv in case of error
-	with open('pm-not-loaded.csv','a+') as fn:
+	with open('/path/to/csv/file/pm-not-loaded.csv','a+') as fn:
 	 writer = csv.writer(fn)
 	 writer.writerow([pm_date,pm1,pm25,pm10])
 
