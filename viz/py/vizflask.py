@@ -63,7 +63,7 @@ def serve_layout():
         # event update handler
         dcc.Interval(
                 id='event-update',
-                interval=4*1000
+                interval=60*4*1000
         )
     ])
 
