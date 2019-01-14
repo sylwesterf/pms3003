@@ -42,8 +42,9 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm10'],
 		name='pm10',
-		mode= 'lines+markers',
-		#text=df['info']
+		#text=df['info'],
+		mode= 'lines+markers'
+		
 	)
 	
 	# combine lines
