@@ -12,6 +12,7 @@ def dynamo_scan(table):
 	# create a pandas dataframe, wrangle the data
 	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10']).sort_values('dt').set_index('dt').astype(int)
 	df.index = pd.to_datetime(df.index)
+	#df['info'] = df['temp'].astype(str) + '°C and' + df['hum'] + ' humidity'
 	
 	return df
 
@@ -41,7 +42,8 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm10'],
 		name='pm10',
-		mode= 'lines+markers'
+		mode= 'lines+markers',
+		#text=df['info']
 	)
 	
 	# combine lines
