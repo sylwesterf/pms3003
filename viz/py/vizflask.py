@@ -69,9 +69,6 @@ def serve_layout():
 
     return serve
 
-# html name
-app.name = "PMS3003"
-
 # call layout function - enables data refresh on page refresh
 app.layout = serve_layout
 
