@@ -23,6 +23,8 @@ sudo echo "enable_uart=1" >> /boot/config.txt
 
 # run a test
 sudo python test.py
+
+# fix paths in rpi2dynamodb.py and csv2s3.py
 ```
 
 EC2 - Flask:
