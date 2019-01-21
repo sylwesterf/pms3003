@@ -113,8 +113,8 @@ class PMSensor():
 		
 		# reject outliers
                 data = data.reshape((n,3))
-                data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
-		data = data[np.array(data[:,2], dtype=float)/np.array(data[:,1], dtype=float) < 2]
+                #data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
+		#data = data[np.array(data[:,2], dtype=float)/np.array(data[:,1], dtype=float) < 2]
 
 		# get the average as int
 		avg = np.mean(data, axis=0, dtype=int)
