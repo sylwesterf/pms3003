@@ -117,7 +117,7 @@ class PMSensor():
 		#data = data[np.array(data[:,2], dtype=float)/np.array(data[:,1], dtype=float) < 2]
 
 		# get the average as int
-		avg = np.mean(data, axis=0, dtype=int)
+		#avg = np.mean(data, axis=0, dtype=int)
 		
 		# put the sensor in the passive mode
 		self.write_serial('BM\xe1\x00\x00\x01p')
@@ -129,5 +129,5 @@ class PMSensor():
 		self.serial.close()
 		
 		# return averaged data
-		return avg
+		return data
 	
