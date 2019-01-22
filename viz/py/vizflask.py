@@ -59,6 +59,13 @@ def serve_layout():
             'color': colors['text'],
             'fontSize': 12
         }),
+	    
+	# latest results
+        html.Div(id='update-pm', children = generate_graph(table)['lastpm'], style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 120
+        }),
 
         # event update handler
         dcc.Interval(
@@ -90,8 +97,19 @@ def update_graph():
 def update_date():
 	
 	# re-scan the table and get last update dt
-    lastdt = generate_graph(table)['lastdt']
-    return lastdt
+	lastdt = generate_graph(table)['lastdt']
+	return lastdt
+
+# app callback for lastpm update
+@app.callback(Output('update-pm', 'children'),
+			  events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_pm():
+	
+	# re-scan the table and get last update dt
+	lastpm = generate_graph(table)['lastpm']
+	return lastpm
 
 # run
 #if __name__ == '__main__':
