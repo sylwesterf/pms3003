@@ -27,7 +27,8 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm1'],
 		name='pm1',
-		mode= 'lines+markers'
+		mode= 'lines',
+		visible='legendonly'
 	)
 	
 	# trace1 - pm2.5
@@ -35,7 +36,7 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm25'],
 		name='pm2.5',
-		mode= 'lines+markers'
+		mode= 'lines'
 	)
 	
 	# trace2 - pm10
@@ -44,7 +45,7 @@ def generate_graph(table):
 		y=df['pm10'],
 		name='pm10',
 		#text=df['info'],
-		mode= 'lines+markers'
+		mode= 'lines'
 		
 	)
 	
@@ -53,6 +54,9 @@ def generate_graph(table):
 	
 	# get last update dt
 	lastdt = 'Ostatni pomiar wykonano ' + str(df.index[-1])
+	
+	# get last measurements of pm25 and pm10
+	lastpm = df[['pm25', 'pm10']].iloc[-1]
 
-	# return quasi-live data for graph's figure attribute
-	return {'data': data, 'lastdt': lastdt}
+	# return quasi-live data
+	return {'data': data, 'lastdt': lastdt, 'lastpm': lastpm}
