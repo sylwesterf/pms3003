@@ -53,22 +53,22 @@ def serve_layout():
 				  xaxis=dict(
 					rangeselector=dict(
 					    buttons=list([
+						dict(count=6,
+						     label='6h',
+						     step='hour',
+						     stepmode='backward'),
+						dict(count=1,
+						     label='1d',
+						     step='day',
+						     stepmode='backward'),
+						dict(count=7,
+						     label='1w',
+						     step='day',
+						     stepmode='backward'),
 						dict(count=1,
 						     label='1m',
 						     step='month',
 						     stepmode='backward'),
-						dict(count=6,
-						     label='6m',
-						     step='month',
-						     stepmode='backward'),
-						dict(count=1,
-						    label='YTD',
-						    step='year',
-						    stepmode='todate'),
-						dict(count=1,
-						    label='1y',
-						    step='year',
-						    stepmode='backward'),
 						dict(step='all')
 					    ])
 					),
@@ -92,9 +92,9 @@ def serve_layout():
         html.Div(id='update-pm', children = generate_graph(table)['lastpm'], style={
             'textAlign': 'left',
             'color': colors['text'],
-            'fontSize': 120,
+            'fontSize': 100,
 	    'marginTop': 5,
-	    'marginLeft': 20,
+	    'marginLeft': 24,
         }),
 
         # event update handler
@@ -139,6 +139,7 @@ def update_pm():
 	
 	# re-scan the table and get last update dt
 	lastpm = generate_graph(table)['lastpm']
+	lastpm = 'PM10: <br> ' + str(lastpm['pm10']) + ' </br> PM2.5: ' + str(lastpm['pm25'])
 	return lastpm
 
 # run
