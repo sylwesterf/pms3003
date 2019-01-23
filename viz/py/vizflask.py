@@ -88,12 +88,21 @@ def serve_layout():
             'fontSize': 12
         }),
 	    
-	# latest results
-        html.Div(id='update-pm', children = generate_graph(table)['lastpm'], style={
+	# latest results pm10
+        html.Div(id='update-pm10', children = generate_graph(table)['lastpm']['pm10'], style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 100,
 	    'marginTop': 5,
+	    'marginLeft': 24,
+        }),
+	    
+	# latest results pm25
+        html.Div(id='update-pm25', children = generate_graph(table)['lastpm']['pm25'], style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 100,
+	    'marginTop': 3,
 	    'marginLeft': 24,
         }),
 
@@ -130,17 +139,30 @@ def update_date():
 	lastdt = generate_graph(table)['lastdt']
 	return lastdt
 
-# app callback for lastpm update
-@app.callback(Output('update-pm', 'children'),
+# app callback for pm10 update
+@app.callback(Output('update-pm10', 'children'),
 			  events=[Event('event-update', 'interval')])
 
 # function for latest results
-def update_pm():
+def update_pm10():
 	
 	# re-scan the table and get last update dt
 	lastpm = generate_graph(table)['lastpm']
-	lastpm = 'PM10: <br> ' + str(lastpm['pm10']) + ' </br> PM2.5: ' + str(lastpm['pm25'])
-	return lastpm
+	lastpm10 = 'PM10: ' + str(lastpm['pm10'])
+	return lastpm10
+
+# app callback for pm25 update
+@app.callback(Output('update-pm25', 'children'),
+			  events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_pm25():
+	
+	# re-scan the table and get last update dt
+	lastpm = generate_graph(table)['lastpm']
+	lastpm25 = 'PM25: ' + str(lastpm['pm25'])
+	return lastpm25
+
 
 # run
 #if __name__ == '__main__':
