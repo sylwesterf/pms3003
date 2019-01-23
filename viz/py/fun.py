@@ -56,7 +56,8 @@ def generate_graph(table):
 	lastdt = 'Ostatni pomiar wykonano ' + str(df.index[-1])
 	
 	# get last measurements of pm25 and pm10
-	lastpm = df[['pm25', 'pm10']].iloc[-1]
+	lastpmnum = df[['pm25', 'pm10']].iloc[-1]
+	lastpm = 'PM10: ' + str(lastpmnum['pm10']) + '      PM2.5: ' + str(lastpmnum['pm25'])
 
 	# return quasi-live data
 	return {'data': data, 'lastdt': lastdt, 'lastpm': lastpm}
