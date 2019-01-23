@@ -64,7 +64,9 @@ def serve_layout():
         html.Div(id='update-pm', children = generate_graph(table)['lastpm'], style={
             'textAlign': 'left',
             'color': colors['text'],
-            'fontSize': 120
+            'fontSize': 160,
+	    'marginTop': 25,
+	    'marginLeft': 10,
         }),
 
         # event update handler
