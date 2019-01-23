@@ -89,7 +89,7 @@ def serve_layout():
         }),
 	    
 	# latest results pm10
-        html.Div(id='update-pm10', children = generate_graph(table)['lastpm']['pm10'], style={
+        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']), style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 100,
@@ -98,7 +98,7 @@ def serve_layout():
         }),
 	    
 	# latest results pm25
-        html.Div(id='update-pm25', children = generate_graph(table)['lastpm']['pm25'], style={
+        html.Div(id='update-pm25', children = 'PM25: ' + str(generate_graph(table)['lastpm']['pm25']), style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 100,
