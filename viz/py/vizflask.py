@@ -111,7 +111,7 @@ def serve_layout():
         # event update handler
         dcc.Interval(
                 id='event-update',
-                interval=20*1*1000
+                interval=60*4*1000	# update every 4 minutes
         )
     ])
 
@@ -162,7 +162,7 @@ def update_pm25():
 	
 	# re-scan the table and get last update dt
 	lastpm = generate_graph(table)['lastpm']
-	lastpm25 = 'PM25: ' + str(lastpm['pm25'])
+	lastpm25 = 'PM2.5: ' + str(lastpm['pm25'])
 	return lastpm25
 
 
