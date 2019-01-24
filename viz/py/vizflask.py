@@ -91,7 +91,7 @@ def serve_layout():
         }),
 	    
 	# latest results pm10
-        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']) + 'PM2.5: ' + str(generate_graph(table)['lastpm']['pm25']), style={
+        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']), style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 80,
@@ -100,11 +100,11 @@ def serve_layout():
         }),
 	    
 	# latest results pm25
-        html.Div(id='update-pm25', children = 'PM25: ' + str(generate_graph(table)['lastpm']['pm25']), style={
+        html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table)['lastpm']['pm25']), style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 80,
-	    'marginTop': 3,
+	    'marginTop': 8,
 	    'marginLeft': 24,
         }),
 
@@ -121,7 +121,7 @@ def serve_layout():
 app.layout = serve_layout
 
 # app callback for graph update
-@app.callback(Output('live-graph', 'figure'),
+@app.callback(Output('live-graph', 'data'),
               events=[Event('event-update', 'interval')])
 			  
 # function for the graph udpate
