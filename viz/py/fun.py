@@ -89,4 +89,4 @@ def generate_graph(table):
 	lastpm = df[['pm25', 'pm10']].iloc[-1]
 
 	# return quasi-live data
-	return {'data': data, 'lastdt': lastdt, 'lastpm': lastpm}
+	return {'data': data, 'layout': layout, 'lastdt': lastdt, 'lastpm': lastpm}
