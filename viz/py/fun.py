@@ -79,9 +79,8 @@ def generate_graph(table):
 					    visible = True
 					),
 					type='date'
-				 )
-				  )
-            )
+				)
+			)
 	
 	# get last update dt
 	lastdt = 'Ostatni pomiar wykonano ' + str(df.index[-1])
