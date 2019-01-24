@@ -52,6 +52,37 @@ def generate_graph(table):
 	# combine lines
 	data = [trace0, trace1, trace2]
 	
+	layout = go.Layout(yaxis = dict(title = "µg/m3"),
+				  xaxis=dict(
+					rangeselector=dict(
+					    buttons=list([
+						dict(count=6,
+						     label='6h',
+						     step='hour',
+						     stepmode='backward'),
+						dict(count=1,
+						     label='1d',
+						     step='day',
+						     stepmode='backward'),
+						dict(count=7,
+						     label='1w',
+						     step='day',
+						     stepmode='backward'),
+						dict(count=1,
+						     label='1m',
+						     step='month',
+						     stepmode='backward'),
+						dict(step='all')
+					    ])
+					),
+					rangeslider=dict(
+					    visible = True
+					),
+					type='date'
+				 )
+				  )
+            )
+	
 	# get last update dt
 	lastdt = 'Ostatni pomiar wykonano ' + str(df.index[-1])
 	
