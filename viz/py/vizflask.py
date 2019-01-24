@@ -28,6 +28,8 @@ colors = {
     'text': '#111101'
 }
 
+app.title = 'PMS3003'
+
 # function for app layout call
 def serve_layout():
     
