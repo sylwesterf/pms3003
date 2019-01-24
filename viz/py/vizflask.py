@@ -121,7 +121,7 @@ def serve_layout():
 app.layout = serve_layout
 
 # app callback for graph update
-@app.callback(Output('live-graph', 'data'),
+@app.callback(Output('live-graph', 'figure'),
               events=[Event('event-update', 'interval')])
 			  
 # function for the graph udpate
