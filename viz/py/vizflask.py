@@ -111,7 +111,7 @@ def serve_layout():
         # event update handler
         dcc.Interval(
                 id='event-update',
-                interval=60*4*1000
+                interval=20*1*1000
         )
     ])
 
@@ -132,7 +132,7 @@ def update_graph():
 
 # app callback for lastdt update
 @app.callback(Output('update-date', 'children'),
-			  events=[Event('event-update', 'interval')])
+		events=[Event('event-update', 'interval')])
 
 # function for lastdt update
 def update_date():
@@ -143,7 +143,7 @@ def update_date():
 
 # app callback for pm10 update
 @app.callback(Output('update-pm10', 'children'),
-			  events=[Event('event-update', 'interval')])
+		events=[Event('event-update', 'interval')])
 
 # function for latest results
 def update_pm10():
@@ -155,7 +155,7 @@ def update_pm10():
 
 # app callback for pm25 update
 @app.callback(Output('update-pm25', 'children'),
-			  events=[Event('event-update', 'interval')])
+		events=[Event('event-update', 'interval')])
 
 # function for latest results
 def update_pm25():
