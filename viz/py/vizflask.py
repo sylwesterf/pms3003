@@ -84,11 +84,11 @@ def serve_layout():
         ),
             
         # header pm
-        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:16], style={
+        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:15] + '0:', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
-	    'marginTop': 3,
+	    'marginTop': 2,
 	    'marginLeft': 24
         }),
 	    
