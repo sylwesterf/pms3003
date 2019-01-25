@@ -83,11 +83,13 @@ def serve_layout():
             )
         ),
             
-        # last updated date
-        html.Div(id='update-date', children = generate_graph(table)['lastdt'], style={
-            'textAlign': 'right',
+        # header pm
+        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:16], style={
+            ''textAlign': 'left',
             'color': colors['text'],
-            'fontSize': 12
+            'fontSize': 27,
+	    'marginTop': 8,
+	    'marginLeft': 24
         }),
 	    
 	# latest results pm10
@@ -95,9 +97,9 @@ def serve_layout():
 		 + ' (' +  str(generate_graph(table)['lastpm']['pm10'] * 2) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
-            'fontSize': 30,
+            'fontSize': 27,
 	    'marginTop': 5,
-	    'marginLeft': 24,
+	    'marginLeft': 24
         }),
 	    
 	# latest results pm25
@@ -105,9 +107,16 @@ def serve_layout():
 		  + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
-            'fontSize': 30,
+            'fontSize': 27,
 	    'marginTop': 5,
-	    'marginLeft': 24,
+	    'marginLeft': 24
+        }),
+	    
+	# last updated date
+        html.Div(id='update-date', children = generate_graph(table)['lastdt'], style={
+            'textAlign': 'right',
+            'color': colors['text'],
+            'fontSize': 8
         }),
 
         # event update handler
@@ -132,12 +141,12 @@ def update_graph():
 	# re-scan the table
 	return generate_graph(table)
 
-# app callback for lastdt update
-@app.callback(Output('update-date', 'children'),
+# app callback for header update
+@app.callback(Output('update-header', 'children'),
 		events=[Event('event-update', 'interval')])
 
 # function for lastdt update
-def update_date():
+def update_header():
 	
 	# re-scan the table and get last update dt
 	lastdt = generate_graph(table)['lastdt']
@@ -167,6 +176,16 @@ def update_pm25():
 	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)'
 	return lastpm25
 
+# app callback for lastdt update
+@app.callback(Output('update-date', 'children'),
+		events=[Event('event-update', 'interval')])
+
+# function for lastdt update
+def update_date():
+	
+	# re-scan the table and get last update dt
+	lastdt = generate_graph(table)['lastdt']
+	return lastdt
 
 # run
 #if __name__ == '__main__':
