@@ -91,7 +91,8 @@ def serve_layout():
         }),
 	    
 	# latest results pm10
-        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']), style={
+        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']) 
+		 + ' (' +  str(generate_graph(table)['lastpm']['pm10'] * 2) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 30,
@@ -100,7 +101,8 @@ def serve_layout():
         }),
 	    
 	# latest results pm25
-        html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table)['lastpm']['pm25']), style={
+        html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table)['lastpm']['pm25'])
+		  + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 30,
@@ -150,7 +152,7 @@ def update_pm10():
 	
 	# re-scan the table and get last update dt
 	lastpm = generate_graph(table)['lastpm']
-	lastpm10 = 'PM10: ' + str(lastpm['pm10'])
+	lastpm10 = 'PM10: ' + str(lastpm['pm10']) + ' (' +  str(generate_graph(table)['lastpm']['pm10'] * 2) + '%)'
 	return lastpm10
 
 # app callback for pm25 update
@@ -162,7 +164,7 @@ def update_pm25():
 	
 	# re-scan the table and get last update dt
 	lastpm = generate_graph(table)['lastpm']
-	lastpm25 = 'PM2.5: ' + str(lastpm['pm25'])
+	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)'
 	return lastpm25
 
 
