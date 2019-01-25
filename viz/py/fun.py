@@ -83,7 +83,7 @@ def generate_graph(table):
 			)
 	
 	# get last update dt
-	lastdt = 'Ostatnia aktualizacja: ' + str(df.index[-1])
+	lastdt = str(df.index[-1])
 	
 	# get last measurements of pm25 and pm10
 	lastpm = df[['pm25', 'pm10']].iloc[-1]
