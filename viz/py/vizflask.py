@@ -85,7 +85,7 @@ def serve_layout():
             
         # header pm
         html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:16], style={
-            ''textAlign': 'left',
+            'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
 	    'marginTop': 8,
@@ -122,7 +122,7 @@ def serve_layout():
         # event update handler
         dcc.Interval(
                 id='event-update',
-                interval=60*4*1000	# update every 4 minutes
+                interval=1*4*1000	# update every 4 minutes
         )
     ])
 
