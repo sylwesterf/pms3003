@@ -149,7 +149,7 @@ def update_graph():
 def update_header():
 	
 	# re-scan the table and get last update dt
-	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:16]
+	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:15] + '0:'
 	return lastdt
 
 # app callback for pm10 update
