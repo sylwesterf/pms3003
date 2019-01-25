@@ -67,9 +67,9 @@ def serve_layout():
 						     label='1w',
 						     step='day',
 						     stepmode='backward'),
-						dict(count=1,
-						     label='1m',
-						     step='month',
+						dict(count=14,
+						     label='2w',
+						     step='day',
 						     stepmode='backward'),
 						dict(step='all')
 					    ])
@@ -84,11 +84,12 @@ def serve_layout():
         ),
             
         # header pm
-        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:16], style={
+        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] 
+		 + '.' + generate_graph(table)['lastdt'][14:16], style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
-	    'marginTop': 8,
+	    'marginTop': 3,
 	    'marginLeft': 24
         }),
 	    
@@ -116,7 +117,7 @@ def serve_layout():
         html.Div(id='update-date', children = 'Ostatnia aktualizacja: ' + generate_graph(table)['lastdt'], style={
             'textAlign': 'right',
             'color': colors['text'],
-            'fontSize': 8
+            'fontSize': 9
         }),
 
         # event update handler
@@ -145,11 +146,12 @@ def update_graph():
 @app.callback(Output('update-header', 'children'),
 		events=[Event('event-update', 'interval')])
 
-# function for lastdt update
+# function for header update
 def update_header():
 	
 	# re-scan the table and get last update dt
-	lastdt = generate_graph(table)['lastdt']
+	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] 
+		 + '.' + generate_graph(table)['lastdt'][14:16]
 	return lastdt
 
 # app callback for pm10 update
@@ -184,7 +186,7 @@ def update_pm25():
 def update_date():
 	
 	# re-scan the table and get last update dt
-	lastdt = generate_graph(table)['lastdt']
+	lastdt = 'Ostatnia aktualizacja: ' + generate_graph(table)['lastdt']
 	return lastdt
 
 # run
