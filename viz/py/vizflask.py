@@ -113,7 +113,7 @@ def serve_layout():
         }),
 	    
 	# last updated date
-        html.Div(id='update-date', children = generate_graph(table)['lastdt'], style={
+        html.Div(id='update-date', children = 'Ostatnia aktualizacja: ' + generate_graph(table)['lastdt'], style={
             'textAlign': 'right',
             'color': colors['text'],
             'fontSize': 8
