@@ -84,8 +84,7 @@ def serve_layout():
         ),
             
         # header pm
-        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] 
-		 + '.' + generate_graph(table)['lastdt'][14:16], style={
+        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:16], style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -150,8 +149,7 @@ def update_graph():
 def update_header():
 	
 	# re-scan the table and get last update dt
-	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] 
-		 + '.' + generate_graph(table)['lastdt'][14:16]
+	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:16]
 	return lastdt
 
 # app callback for pm10 update
