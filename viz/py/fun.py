@@ -68,9 +68,9 @@ def generate_graph(table):
 						     label='1w',
 						     step='day',
 						     stepmode='backward'),
-						dict(count=1,
-						     label='1m',
-						     step='month',
+						dict(count=14,
+						     label='2w',
+						     step='day',
 						     stepmode='backward'),
 						dict(step='all')
 					    ])
