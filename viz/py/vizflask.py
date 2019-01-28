@@ -132,11 +132,6 @@ def serve_layout():
 # call layout function - enables data refresh on page refresh
 app.layout = serve_layout
 
-@server.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(server.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
 # app callback for graph update
 @app.callback(Output('live-graph', 'figure'),
               events=[Event('event-update', 'interval')])
