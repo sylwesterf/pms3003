@@ -2,7 +2,7 @@ flask
 boto3
 plotly
 pandas
-dash
+dash==0.35.3
 dash_core_components
 dash_html_components
 gunicorn
