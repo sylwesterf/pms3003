@@ -24,6 +24,7 @@ git clone https://github.com/sylwesterf/pms3003.git
 
 # copy viz files
 cp pms3003/viz/py/{fun.py,requirements.txt,vizflask.py,wsgi.py} .
+cp -a pms3003/viz/py/assets .
 
 # activate script flask venv, install flask app requirements and run wsgi server
 /bin/bash -c ". /opt/pms3003/flask/bin/activate; pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:server &"
