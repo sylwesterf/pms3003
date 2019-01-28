@@ -28,7 +28,22 @@ colors = {
     'text': '#111101'
 }
 
+# html head section
 app.title = 'PMS3003'
+
+_default_index = '''<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+        </footer>
+    </body>
+</html>'''
 
 # function for app layout call
 def serve_layout():
