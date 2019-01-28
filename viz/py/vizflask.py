@@ -30,15 +30,6 @@ colors = {
 
 app.title = 'PMS3003'
 
-app.index_string = '''
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-    </head>
-</html>
-'''
-
 # function for app layout call
 def serve_layout():
     
@@ -139,6 +130,11 @@ def serve_layout():
 
 # call layout function - enables data refresh on page refresh
 app.layout = serve_layout
+
+@server.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(server.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 # app callback for graph update
 @app.callback(Output('live-graph', 'figure'),
