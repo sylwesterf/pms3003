@@ -3,6 +3,6 @@ boto3
 plotly
 pandas
 dash==0.35.3
-dash_core_components
+dash_core_components==0.42.0
 dash_html_components
 gunicorn
