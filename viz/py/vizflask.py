@@ -30,6 +30,15 @@ colors = {
 
 app.title = 'PMS3003'
 
+app.index_string = '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+    </head>
+</html>
+'''
+
 # function for app layout call
 def serve_layout():
     
