@@ -19,12 +19,15 @@ class PMSensor():
 		# enable software flow control.
 		self.xonxoff = True
 		
+		# timeout
+		self.timeout = 30
+		
 		self.serial = None
 
 	def open_port(self):
 	
 		# open serial port
-		self.serial = serial.Serial(self.port, baudrate=self.baudrate, xonxoff=self.xonxoff)
+		self.serial = serial.Serial(self.port, baudrate=self.baudrate, xonxoff=self.xonxoff, timeout=self.timeout)
 
 	def fixed_bytes(self):
 		
