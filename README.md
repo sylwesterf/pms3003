@@ -1,5 +1,7 @@
 # Air quality monitoring station 
 ![lang](https://img.shields.io/github/languages/top/sylwesterf/pms3003.svg?style=flat)
+![size](https://img.shields.io/github/repo-size/sylwesterf/pms3003.svg?style=flat)
+![lastdt](https://img.shields.io/github/last-commit/sylwesterf/pms3003.svg?style=flat)
 
 This project consists of two parts:
 - air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
