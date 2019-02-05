@@ -31,7 +31,7 @@ class PMSensor():
 		while True:
 		
 			#get two starting bytes
-			start_bytes = self.serial.read(2)
+			start_bytes = self.serial.readline(2)
 			start_bytes_hex = start_bytes.encode('hex')
 			
 			#check for fixed characters
@@ -41,7 +41,7 @@ class PMSensor():
 	def read_serial(self):
 		
 		# read from uart, up to 22 bytes
-		data_uart = self.serial.read(22)
+		data_uart = self.serial.readline(22)
 		
 		# encode
 		data_hex = data_uart.encode('hex')
@@ -99,7 +99,7 @@ class PMSensor():
 	def read_pm(self):
 		
 		# wakeup sensor with 45sec timeout
-		self.write_serial('BM\xe4\x00\x01\x01t', 45)
+		self.write_serial('BM\xe4\x00\x01\x01t', 55)
 		
 		# put into active mode
 		self.write_serial('BM\xe1\x00\x01\x01q', 15)
@@ -110,11 +110,10 @@ class PMSensor():
 		for i in range(1,n):
 			time.sleep(10)
 			data = np.append([data], [self.single_read()])
+			time.sleep(5)
 		
-		# reject outliers
+		# reshape list into matrix
                 data = data.reshape((n,3))
-                #data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
-		#data = data[np.array(data[:,2], dtype=float)/np.array(data[:,1], dtype=float) < 2]
 
 		# get the average as int
 		#avg = np.mean(data, axis=0, dtype=int)
