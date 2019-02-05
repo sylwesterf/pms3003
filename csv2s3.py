@@ -3,7 +3,7 @@ import boto3
 import time
 import os
 
-# update variables for upload
+# set up variables for s3 upload
 s3filename = time.strftime('%Y/%m/%d.csv')
 s3bucket = 's3bucket'
 filename = '/path/to/csv/file/pm-archive.csv'
