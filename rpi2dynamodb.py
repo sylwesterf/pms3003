@@ -12,11 +12,11 @@ from pms3003 import PMSensor
 pm = PMSensor(1)
 	
 # get PM1, PM2.5, PM10 values
-data_raw = pm.read_pm()
+data = pm.read_pm()
 #pm1, pm25, pm10 = pm.read_pm()
 
 # reject outliers
-data = data_raw[np.all(np.abs((data_raw - np.mean(data_raw, axis=0))) < 2 * np.std(data_raw, axis=0), axis=1)]
+data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
 data = data[np.array(data[:,2], dtype=float)/np.array(data[:,1], dtype=float) < 2]
 
 # get the average as an int
