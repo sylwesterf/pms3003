@@ -13,7 +13,6 @@ pm = PMSensor(1)
 	
 # get PM1, PM2.5, PM10 values
 data = pm.read_pm()
-#pm1, pm25, pm10 = pm.read_pm()
 
 # reject outliers
 data = data[np.all(np.abs((data - np.mean(data, axis=0))) < 2 * np.std(data, axis=0), axis=1)]
@@ -56,16 +55,18 @@ try:
                         'pm10' : data[i,2],
                     }
                 )
+		
+	# sending SNS notification about new load
+	sns = boto3.resource('sns')
+	topic = sns.Topic('arn::pastehere::')
+	response = topic.publish(
+    		Message='Data was successfully loaded on: ' + pm_date,
+    		Subject='PMS3003 Data Load',
+    		MessageStructure='string'
+	)
 	
 except Exception:
 	# write to csv in case of error
 	with open('/path/to/csv/file/pm-not-loaded.csv','a+') as fn:
 	 writer = csv.writer(fn)
 	 writer.writerow([pm_date,pm1,pm25,pm10])
-
-# sending SNS notification about new load
-#client = boto3.client('sns')
-#client.publish(
-#    TopicArn = os.environ['loaded'],
-#    Message = pm_date
-#)
