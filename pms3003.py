@@ -117,9 +117,6 @@ class PMSensor():
 		
 		# reshape list into matrix
                 data = data.reshape((n,3))
-
-		# get the average as int
-		#avg = np.mean(data, axis=0, dtype=int)
 		
 		# put the sensor in the passive mode
 		self.write_serial('BM\xe1\x00\x00\x01p')
