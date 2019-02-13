@@ -20,7 +20,7 @@ class PMSensor():
 		self.xonxoff = True
 		
 		# timeout
-		self.timeout = 30
+		self.timeout = 60
 		
 		self.serial = None
 
