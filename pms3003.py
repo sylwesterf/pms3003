@@ -95,6 +95,9 @@ class PMSensor():
 				
 					# get the pm values
 					data = self.read_serial()
+					
+					# close serial port
+					self.serial.close()
 				
 				# data read-out
 				return data
