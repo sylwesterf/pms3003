@@ -52,7 +52,7 @@ try:
                         'dt' : pm_date[:15] + "0 " + str(i),
                         'pm1' : data[i,0],
                         'pm25' : data[i,1],
-                        'pm10' : data[i,2],
+                        'pm10' : data[i,2]
                     }
                 )
 		
