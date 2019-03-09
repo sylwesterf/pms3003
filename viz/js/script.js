@@ -1,3 +1,4 @@
+//Setup credentials 
 var credentials = new AWS.Credentials({
   accessKeyId: 'xyz', secretAccessKey: 'xyz'
 });
@@ -5,11 +6,29 @@ AWS.config.credentials = credentials;
 
 var dynamodb = new AWS.DynamoDB.DocumentClient({region: 'eu-central-1'});
 
+
+//Generating a string of the last 72 hours back
+var ts = new Date().getTime();
+var tsYesterday = (ts - (72 * 3600) * 1000);
+var d = new Date(tsYesterday);
+var yesterdayDateString = d.getFullYear() + '-'
++ ('0' + (d.getMonth()+1)).slice(-2) + '-'
++ ('0' + d.getDate()).slice(-2) + 'T'
++ ('0' + (d.getHours()+1)).slice(-2) + ':'
+
+//DynamoDB Query
 var params = {
  TableName: 'pms3003js',
- Limit: 100,
+ //Limit: 10,
+ KeyConditionExpression: "device = :device and dt > :start_date",
+        ExpressionAttributeValues: {
+            ":device":'pms3003',
+			":start_date":yesterdayDateString,
+        }
 };
+
 /*
+//Query DynamoDB and retrieve a table
 dynamodb.scan(params, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
   else{
@@ -22,7 +41,9 @@ dynamodb.scan(params, function(err, data) {
     }
 });
 */
-dynamodb.scan(params, function(err, data) {
+
+//Query DynamoDB for a graph
+dynamodb.query(params, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
   else{
 	var eventDateTime = [];
