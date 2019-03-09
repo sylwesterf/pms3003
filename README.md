@@ -46,3 +46,4 @@ rm prep.sh
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
+- https://medium.com/@rfreeman/serverless-dynamic-real-time-dashboard-with-aws-dynamodb-a1a7f8d3bc01
