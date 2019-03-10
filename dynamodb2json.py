@@ -13,8 +13,8 @@ table = dynamodb.Table('table_name')
 # get 3 days of data
 dt_offset = (datetime.datetime.now() - datetime.timedelta(days=3)).strftime('%Y-%m-%d')
 response = table.scan(
-					FilterExpression=Attr('dt').gt(dt_offset) 
-					)
+		FilterExpression=Attr('dt').gt(dt_offset) 
+		)
 data = response['Items']
 
 # create a pandas dataframe
