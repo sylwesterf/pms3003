@@ -9,6 +9,8 @@ This project consists of two parts:
 - solution for measurement collection (AWS MySQL/DynamoDB) and data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2)
 
 http://sylwester.cf/
+http://sylwesterf.s3-website.eu-central-1.amazonaws.com/
+https://sylwesterf.github.io/
 
 ## Installation
 
