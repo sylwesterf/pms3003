@@ -23,7 +23,7 @@ var params = {
  KeyConditionExpression: "device = :device and dt > :start_date",
         ExpressionAttributeValues: {
             ":device":'pms3003',
-			":start_date":yesterdayDateString,
+	    ":start_date":yesterdayDateString,
         }
 };
 
