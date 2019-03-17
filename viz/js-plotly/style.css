@@ -1,0 +1,15 @@
+h2 {
+   	width: 100%;
+    	text-align:center;
+	font-weight: 200;
+	color: #999;
+	font-family: Helvetica Neue, Arial, sans-serif;
+}
+
+p {
+    	width: 100%;
+    	text-align:right;
+	font-size: 10px;
+	color: #999;
+	font-family: Helvetica Neue, Arial, sans-serif;
+}
