@@ -3,6 +3,7 @@
 ![size](https://img.shields.io/github/repo-size/sylwesterf/pms3003.svg?style=flat)
 ![lastdt](https://img.shields.io/github/last-commit/sylwesterf/pms3003.svg?style=flat)
 ![rls](https://img.shields.io/github/release-date-pre/sylwesterf/pms3003.svg?style=flat)
+![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
 This project consists of two parts:
 - air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
