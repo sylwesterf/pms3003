@@ -44,7 +44,7 @@ rm prep.sh
 
 ## TODO
 - add temperature and humidity sensor
-- create a javascript viz
+- ~~create a javascript viz~~
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
