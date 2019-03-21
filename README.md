@@ -50,3 +50,6 @@ rm prep.sh
 - https://github.com/Thomas-Tsai/pms3003-g3
 - https://medium.com/@rfreeman/serverless-dynamic-real-time-dashboard-with-aws-dynamodb-a1a7f8d3bc01
 - https://github.com/szazo/DHT11_Python
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
