@@ -1,5 +1,7 @@
 #!/bin/python
 from pms3003 import PMSensor
+import RPi.GPIO as GPIO
+import dht11
 
 # run to get particle measures in the console
 
@@ -14,3 +16,17 @@ print(pm.read_pm())
 #pm.write_serial('BM\xe4\x00\x01\x01t', 45)
 #pm.write_serial('BM\xe1\x00\x01\x01q', 15)
 #print(pm.single_read())
+
+# setup dht11
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.cleanup()
+
+# read dth11 data using pin 7
+instance = dht11.DHT11(pin = 7)
+result = instance.read()
+temp, hum = result.temperature, result.humidity
+
+# print data
+print(temp)
+print(hum)
