@@ -19,6 +19,8 @@ for i in range(df.shape[0]):
                 'pm1' : int(df.pm1[i]),
                 'pm25' : int(df.pm25[i]),
                 'pm10' : int(df.pm10[i]),
+                'temp' : float(df.temp[i]),
+                'hum' : float(df.hum[i])
             }
         )
 
