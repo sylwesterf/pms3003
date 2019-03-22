@@ -18,7 +18,7 @@ response = table.scan(
 data = response['Items']
 
 # create a pandas dataframe
-df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10']).sort_values('dt').set_index('dt').astype(int)
+df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt').astype(int)
 df = df.reset_index()
 
 # convert to json
