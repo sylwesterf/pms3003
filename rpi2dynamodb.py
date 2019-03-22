@@ -84,4 +84,4 @@ except Exception:
 	# write to csv in case of error
 	with open('/path/to/csv/file/pm-not-loaded.csv','a+') as fn:
 	 writer = csv.writer(fn)
-	 writer.writerow([pm_date,pm1,pm25,pm10])
+	 writer.writerow([pm_date,pm1,pm25,pm10,temp,hum])
