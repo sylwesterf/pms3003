@@ -7,8 +7,10 @@ class PMSensor():
 	
 	def __init__(self, env):
 	
-		# hardcode the serial port
-		self.port = '/dev/ttyS0'
+		# hardcode the gpio serial port
+		# /dev/ttyAMA0 -> Bluetooth (or GPIO when bt turned off)
+		# /dev/ttyS0 -> GPIO serial port 
+		self.port = '/dev/ttyS0' 
 		
 		# sensor placed indoor/outdoor (0/1)
 		self.standard = env
@@ -77,6 +79,9 @@ class PMSensor():
 		
 		# writes binary data to the serial port
 		write = self.serial.write(cmd)
+		
+		# close serial port
+		self.serial.close()
 		
 		# set timeout
 		time.sleep(timeout)
