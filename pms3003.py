@@ -8,7 +8,7 @@ class PMSensor():
 	def __init__(self, env):
 	
 		# hardcode the gpio serial port
-		# /dev/ttyAMA0 -> Bluetooth (or GPIO when bt turned off)
+		# /dev/ttyAMA0 -> Bluetooth (or GPIO when Bluetooth module turned off)
 		# /dev/ttyS0 -> GPIO serial port 
 		self.port = '/dev/ttyS0' 
 		
