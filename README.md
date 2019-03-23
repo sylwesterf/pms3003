@@ -40,6 +40,11 @@ Connect PMS3003 to Raspberry Pi as per sensor datasheet
 | RxD           | TxD           |
 | TxD           | RxD           |
 
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 
 Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet
 VCC - +3.3V
