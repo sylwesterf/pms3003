@@ -29,21 +29,28 @@ sudo pip install -r requirements.txt
 # follow RaspberryPi documentation to enable uart
 # https://www.raspberrypi.org/documentation/configuration/uart.md
 
-# connect Raspberry Pi PINs to PMS3003 as per sensor datasheet
+# connect PMS3003 to Raspberry Pi as per sensor datasheet
 VCC - +5V
 GND - GND
 RxD - TxD
 TxD - RxD
 
-# connect Raspberry Pi PINs to DHT11 (3 PIN) as per sensor datasheet
+# connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet
 VCC - +3.3V
 OUT - GPIO7 (BCM)
 GND - GND
 
-# run a test
+# run a test - output to terminal
 sudo python test.py
 
-# fix paths in rpi2dynamodb.py and variables in csv2s3.py
+# run rpi2dynamodb.py script to load data into DynamoDB and generate a (backup) csv file on Raspberry Pi
+# set up the aws (cli) credentials
+# verify a project path and DynamoDB table name in rpi2dynamodb.py for csv/DynamoDB output 
+sudo python rpi2dynamodb.py
+# for mysql use older file pms3003/mysql/rpi2mysql.py
+
+# for automatic archival of csv files into S3 use csv2s3.py (set up variables first)
+sudo python csv2s3.py
 ```
 
 #### 2. Data visualization 
@@ -74,10 +81,11 @@ Chart.js:
 
 ```sh
 # deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js
+# see https://sylwesterf.github.io/ 
 ```
 
 ## TODO
-- add temperature and humidity sensor
+- add temperature and humidity sensor to viz
 - ~~create a javascript viz~~
 
 ## Acknowledgments
