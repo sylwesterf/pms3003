@@ -59,7 +59,7 @@ sudo python csv2s3.py
 
 #### 2. Data visualization 
 
-###### EC2 - Flask:
+##### EC2 - Flask:
 
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
