@@ -46,7 +46,7 @@ rm prep.sh
 Chart.js:
 
 ```sh
-deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file
+# deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file
 ```
 
 ## TODO
