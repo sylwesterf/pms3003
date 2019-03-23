@@ -14,7 +14,7 @@ http://sylwesterf.s3-website.eu-central-1.amazonaws.com/</br>
 https://sylwesterf.github.io/
 
 ## Installation
-# Air quality monitoring station
+### Air quality monitoring station
 
 Raspberry Pi:
 
