@@ -62,7 +62,7 @@ sudo python rpi2dynamodb.py
 # for automatic archival of csv files into S3 use csv2s3.py (set up variables first)
 sudo python csv2s3.py
 ```
-For mysql use *pms3003/mysql/rpi2mysql.py*
+For mysql refer to *pms3003/mysql/* folder.
 
 #### 2. Data visualization 
 
