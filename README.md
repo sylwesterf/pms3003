@@ -33,6 +33,7 @@ sudo aws configure
 Follow RaspberryPi documentation to enable uart: https://www.raspberrypi.org/documentation/configuration/uart.md
 
 Connect PMS3003 to Raspberry Pi as per sensor datasheet
+
 | PMS3003       | Rpi           |
 |           --- |---            |
 | VCC           | +5V           |
