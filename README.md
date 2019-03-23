@@ -26,8 +26,19 @@ sudo git clone https://github.com/sylwesterf/pms3003.git
 sudo pip install -r requirements.txt
 # run aws configure and set AWS Access Key ID and AWS Secret Access Key
 
-# enable uart
-sudo echo "enable_uart=1" >> /boot/config.txt
+# follow RaspberryPi documentation to enable uart
+# https://www.raspberrypi.org/documentation/configuration/uart.md
+
+# connect Raspberry Pi PINs to PMS3003 as per sensor datasheet
+VCC - +5V
+GND - GND
+RxD - TxD
+TxD - RxD
+
+# connect Raspberry Pi PINs to DHT11 (3 PIN) as per sensor datasheet
+VCC - +3.3V
+OUT - GPIO7 (BCM)
+GND - GND
 
 # run a test
 sudo python test.py
