@@ -16,7 +16,7 @@ https://sylwesterf.github.io/
 ## Installation
 #### 1. Air quality monitoring station
 
-Raspberry Pi:
+##### Raspberry Pi:
 
 ```sh
 # download project files
@@ -60,7 +60,6 @@ sudo python csv2s3.py
 #### 2. Data visualization 
 
 ##### EC2 - Flask:
-
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
@@ -68,17 +67,16 @@ sudo bash prep.sh
 rm prep.sh
 ```
 
-R-Shiny:
-
+##### R-Shiny:
 Deploy the contents of pms3003/viz/R/pms3003/ into your shiny server
 For shiny server setup on EC2 follow the pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh
 
-
-plotly.js:
+##### plotly.js:
 Deploy the contents of pms3003/viz/js-chart/ and setup the credentials in script.js
 
-Chart.js:
+##### Chart.js:
 Deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js
+See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylwesterf/sylwesterf.github.io
 
 ## TODO
 - add temperature and humidity sensor to viz
