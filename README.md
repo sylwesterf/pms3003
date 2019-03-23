@@ -58,11 +58,11 @@ sudo python test.py
 # set up the aws (cli) credentials
 # verify a project path and DynamoDB table name in rpi2dynamodb.py for csv/DynamoDB output 
 sudo python rpi2dynamodb.py
-# for mysql use older file pms3003/mysql/rpi2mysql.py
 
 # for automatic archival of csv files into S3 use csv2s3.py (set up variables first)
 sudo python csv2s3.py
 ```
+For mysql use *pms3003/mysql/rpi2mysql.py*
 
 #### 2. Data visualization 
 
@@ -75,14 +75,14 @@ rm prep.sh
 ```
 
 ##### R-Shiny:
-Deploy the contents of pms3003/viz/R/pms3003/ into your shiny server </br>
-For shiny server setup on EC2 follow the pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh
+Deploy the contents of *pms3003/viz/R/pms3003/* into your shiny server </br>
+For shiny server setup on EC2 follow the *pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh*
 
 ##### plotly.js:
-Deploy the contents of pms3003/viz/js-chart/ and setup the credentials in script.js
+Deploy the contents of *pms3003/viz/js-chart/* and setup the credentials in script.js
 
 ##### Chart.js:
-Deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js </br>
+Deploy the contents of *pms3003/viz/js-plotly/* and update the url for json src file in script.js </br>
 See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylwesterf/sylwesterf.github.io
 
 ## TODO
