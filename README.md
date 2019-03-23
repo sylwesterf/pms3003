@@ -34,7 +34,7 @@ Follow RaspberryPi documentation to enable uart: https://www.raspberrypi.org/doc
 
 Connect PMS3003 to Raspberry Pi as per sensor datasheet
 | PMS3003       | Rpi           |
-| ------------- |:-------------:|
+|           --- |---            |
 | VCC           | +5V           |
 | GND           | GND           |
 | RxD           | TxD           |
