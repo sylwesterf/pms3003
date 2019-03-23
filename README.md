@@ -24,22 +24,26 @@ sudo git clone https://github.com/sylwesterf/pms3003.git
 
 # install dependencies
 sudo pip install -r requirements.txt
+
 # run aws configure and set AWS Access Key ID and AWS Secret Access Key
+sudo pip3 install awscli -y
+sudo aws configure
+```
 
-# follow RaspberryPi documentation to enable uart
-# https://www.raspberrypi.org/documentation/configuration/uart.md
+Follow RaspberryPi documentation to enable uart: https://www.raspberrypi.org/documentation/configuration/uart.md
 
-# connect PMS3003 to Raspberry Pi as per sensor datasheet
+Connect PMS3003 to Raspberry Pi as per sensor datasheet
 VCC - +5V
 GND - GND
 RxD - TxD
 TxD - RxD
 
-# connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet
+Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet
 VCC - +3.3V
 OUT - GPIO7 (BCM)
 GND - GND
 
+```sh
 # run a test - output to terminal
 sudo python test.py
 
@@ -55,7 +59,7 @@ sudo python csv2s3.py
 
 #### 2. Data visualization 
 
-EC2 - Flask:
+###### EC2 - Flask:
 
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
@@ -66,23 +70,15 @@ rm prep.sh
 
 R-Shiny:
 
-```sh
-# deploy the contents of pms3003/viz/R/pms3003/ into your shiny server
-# for shiny server setup on EC2 follow the pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh
-```
+Deploy the contents of pms3003/viz/R/pms3003/ into your shiny server
+For shiny server setup on EC2 follow the pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh
+
 
 plotly.js:
-
-```sh
-# deploy the contents of pms3003/viz/js-chart/ and setup the credentials in script.js
-```
+Deploy the contents of pms3003/viz/js-chart/ and setup the credentials in script.js
 
 Chart.js:
-
-```sh
-# deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js
-# see https://sylwesterf.github.io/ 
-```
+Deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js
 
 ## TODO
 - add temperature and humidity sensor to viz
