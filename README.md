@@ -43,6 +43,9 @@ sudo bash prep.sh
 rm prep.sh
 ```
 
+Chart.js:
+deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file
+
 ## TODO
 - add temperature and humidity sensor
 - ~~create a javascript viz~~
