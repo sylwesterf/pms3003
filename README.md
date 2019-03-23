@@ -6,8 +6,8 @@
 ![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
 This project consists of two parts:
-- air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
-- solution for measurement collection (AWS MySQL/DynamoDB/S3) and data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2)
+1. air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
+2. solution for measurement collection (AWS MySQL/DynamoDB/S3) and data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2)
 
 https://sylwester.cf/</br>
 http://sylwesterf.s3-website.eu-central-1.amazonaws.com/</br>
