@@ -43,10 +43,16 @@ sudo bash prep.sh
 rm prep.sh
 ```
 
+plotly.js:
+
+```sh
+# deploy the contents of pms3003/viz/js-chart/ and setup the credentials in script.js
+```
+
 Chart.js:
 
 ```sh
-# deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file
+# deploy the contents of pms3003/viz/js-plotly/ and update the url for json src file in script.js
 ```
 
 ## TODO
