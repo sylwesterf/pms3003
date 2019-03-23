@@ -14,6 +14,7 @@ http://sylwesterf.s3-website.eu-central-1.amazonaws.com/</br>
 https://sylwesterf.github.io/
 
 ## Installation
+# Air quality monitoring station
 
 Raspberry Pi:
 
@@ -41,6 +42,13 @@ EC2 - Flask:
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
 sudo bash prep.sh
 rm prep.sh
+```
+
+R-Shiny:
+
+```sh
+# deploy the contents of pms3003/viz/R/pms3003/ into your shiny server
+# for shiny server setup on EC2 follow the pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh
 ```
 
 plotly.js:
