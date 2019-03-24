@@ -1,8 +1,8 @@
-flask
-boto3
-plotly
-pandas
+boto3==1.9.85
 dash==0.35.3
-dash_core_components==0.42.0
-dash_html_components
-gunicorn
+dash-core-components==0.42.1
+dash-html-components==0.13.5
+Flask==1.0.2
+gunicorn==19.9.0
+pandas
+plotly==3.5.0
