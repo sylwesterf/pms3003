@@ -11,9 +11,9 @@ def dynamo_scan(table):
 	data = response['Items']
 
 	# create a pandas dataframe, wrangle the data
-	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10']).sort_values('dt').set_index('dt').astype(int)
+	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt')
 	df.index = pd.to_datetime(df.index)
-	#df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
+	df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
 	
 	return df
 
@@ -44,7 +44,7 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm10'],
 		name='pm10',
-		#text=df['info'],
+		text=df['info'],
 		mode= 'lines'
 		
 	)
