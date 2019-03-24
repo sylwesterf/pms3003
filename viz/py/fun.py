@@ -11,7 +11,7 @@ def dynamo_scan(table):
 	data = response['Items']
 
 	# create a pandas dataframe, wrangle the data
-	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt')
+	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10']).sort_values('dt').set_index('dt').astype(int)
 	df.index = pd.to_datetime(df.index)
 	#df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + 'C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
 	#df['info'] = df['temp'].astype(str) + '°C and' + df['hum'].astype(str) + ' humidity'
