@@ -66,7 +66,7 @@ For mysql refer to *pms3003/mysql/* folder.
 
 #### 2. Data visualization 
 
-##### EC2 - Flask:
+##### Flask (AWS EC2)
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
@@ -86,8 +86,10 @@ Deploy the contents of *pms3003/viz/js-plotly/* and update the url for json src 
 See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylwesterf/sylwesterf.github.io
 
 ## TODO
-- add temperature and humidity sensor to viz
-- ~~create a javascript viz~~
+- ~~temperature and humidity sensor to viz~~
+- ~~a javascript viz~~
+- new layout w/ user interface for time-based data selection (initial data retrieval as scan takes long time on Flask)
+- case for sensors 
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
