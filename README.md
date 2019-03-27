@@ -25,10 +25,6 @@ cd pms3003
 
 # install dependencies
 sudo pip install -r requirements.txt
-
-# run aws configure and set AWS Access Key ID and AWS Secret Access Key
-sudo pip3 install awscli -y
-sudo aws configure
 ```
 
 Follow RaspberryPi documentation to enable uart: https://www.raspberrypi.org/documentation/configuration/uart.md
@@ -54,6 +50,10 @@ Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet:
 ```sh
 # run a test - output to terminal
 sudo python test.py
+
+# run aws configure and set AWS Access Key ID and AWS Secret Access Key for DynamoDB/S3 upload
+sudo pip3 install awscli -y
+sudo aws configure
 
 # run rpi2dynamodb.py script to load data into DynamoDB and generate a (backup) csv file on Raspberry Pi
 # set up the aws (cli) credentials
