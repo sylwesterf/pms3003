@@ -21,6 +21,7 @@ https://sylwesterf.github.io/
 ```sh
 # download project files
 sudo git clone https://github.com/sylwesterf/pms3003.git
+cd pms3003
 
 # install dependencies
 sudo pip install -r requirements.txt
