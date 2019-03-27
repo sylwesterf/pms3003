@@ -52,7 +52,6 @@ Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet:
 sudo python test.py
 
 # run aws configure and set AWS Access Key ID and AWS Secret Access Key for DynamoDB/S3 upload
-sudo pip3 install awscli -y
 sudo aws configure
 
 # run rpi2dynamodb.py script to load data into DynamoDB and generate a (backup) csv file on Raspberry Pi
