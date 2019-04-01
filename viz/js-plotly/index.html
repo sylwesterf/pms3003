@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    	  <title>PMS3003</title>
- 	  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-	  <link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="UTF-8">
+    <title>PMS3003</title>
+ 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"> 
+	<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
   </head>
   <body>
 	  <h2>Air pollution</h2>
 	  <div id="pms3003"></div>
 	  <script src="script.js"></script>
-	  <p>Data refresh every 6 hours</p>
+	  <h3 id='last_pm10'></h3>
+	  <h3 id='last_pm25'></h3>
+	  <h3 id='last_dt'></h3>
+	  <p>Data refresh every 30mins</p>
   </body>
 </html>
