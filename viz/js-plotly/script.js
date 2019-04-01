@@ -27,7 +27,7 @@ function drawLineChart() {
   };
 
   var jsonData = $.ajax({
-    url: 'https://cors.io/?https://s3.eu-central-1.amazonaws.com/pms3003/data2.json',
+    url: 'data.json',
     dataType: 'json',
   }).done(function (results) {
 
@@ -61,6 +61,13 @@ function drawLineChart() {
 		return "temp: " + v + "°C | hum: " + hum[i] + "%";
 	});
 	//console.log( "tooltip:", tooltip );
+	var last_dt = eventdt[eventdt.length - 1];
+	var last_pm25 = eventpm25[eventpm25.length - 1];
+	var last_pm10 = eventpm10[eventpm10.length - 1];
+	
+	document.getElementById("last_pm25").innerHTML = 'PM2.5: ' + last_pm25 + ' (' + last_pm25*4 + '%)';
+	document.getElementById("last_pm10").innerHTML = 'PM10: ' + last_pm10 + ' (' + last_pm10*2 + '%)';
+	document.getElementById("last_dt").innerHTML = 'Timestamp: ' + last_dt;
 
     // Create the chart.js data structure using 'labels' and 'data'
     var pm1 = {
