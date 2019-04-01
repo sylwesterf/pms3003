@@ -78,12 +78,13 @@ rm prep.sh
 Deploy the contents of *pms3003/viz/R/pms3003/* into your shiny server </br>
 For shiny server setup on EC2 follow the *pms3003/viz/R/pms3003/ec2_ubuntu_config_R.sh*
 
-##### plotly.js:
-Deploy the contents of *pms3003/viz/js-chart/* and setup the credentials in script.js
-
 ##### Chart.js:
-Deploy the contents of *pms3003/viz/js-plotly/* and update the url for json src file in script.js </br>
+Deploy the contents of *pms3003/viz/js-chart/* and update the url for json src file in script.js </br>
 See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylwesterf/sylwesterf.github.io
+
+##### plotly.js:
+Deploy the contents of *pms3003/viz/js-plotly/* and update the url for json src file in script.js </br>
+See http://sylwesterf.s3-website.eu-central-1.amazonaws.com
 
 ## TODO
 - ~~temperature and humidity sensor to viz~~
