@@ -91,6 +91,7 @@ See http://sylwesterf.s3-website.eu-central-1.amazonaws.com
 - ~~a javascript viz~~
 - new layout w/ user interface for time-based data selection (initial data retrieval as scan takes long time on Flask)
 - case for sensors 
+- authentication
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
