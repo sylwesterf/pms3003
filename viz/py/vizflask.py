@@ -85,7 +85,8 @@ def serve_layout():
 						dict(count=14,
 						     label='2w',
 						     step='day',
-						     stepmode='backward'),
+						     stepmode='backward',
+						     active=true),
 						dict(step='all')
 					    ])
 					),
