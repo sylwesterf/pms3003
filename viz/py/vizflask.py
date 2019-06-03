@@ -86,7 +86,7 @@ def serve_layout():
 						     label='2w',
 						     step='day',
 						     stepmode='backward',
-						     active=true),
+						     active=True),
 						dict(step='all')
 					    ])
 					),
