@@ -79,7 +79,19 @@ def generate_graph(table):
 					    visible = True
 					),
 					type='date'
-				)
+				),
+			   	shapes = [{
+		    			'type': 'line',
+		    			'x0': df.index[0],
+		    			'y0': 4,
+		    			'x1': df.index[-1],
+		    			'y1': 4,
+		    			'line': {
+						'color': 'rgb(50, 171, 96)',
+						'width': 4
+		    			},
+				}]
+
 			)
 	
 	# get last update dt
