@@ -15,6 +15,7 @@ table = dynamodb.Table('pms3003')
 for i in range(df.shape[0]):
         table.put_item(
                 Item={
+                'device' : 'pms3003',
                 'dt' : df.dt[i],
                 'pm1' : int(df.pm1[i]),
                 'pm25' : int(df.pm25[i]),
