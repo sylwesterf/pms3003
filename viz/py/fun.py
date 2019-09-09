@@ -94,8 +94,11 @@ def generate_graph(table):
 	# get last update dt
 	lastdt = str(df.index[-1])
 	
+	# get first dt
+	firstdt = str(df.index[0])
+	
 	# get last measurements of pm25 and pm10
 	lastpm = df[['pm25', 'pm10']].iloc[-1]
 
 	# return quasi-live data
-	return {'data': data, 'layout': layout, 'lastdt': lastdt, 'lastpm': lastpm}
+	return {'data': data, 'layout': layout, 'firstdt': firstdt, 'lastdt': lastdt, 'lastpm': lastpm}
