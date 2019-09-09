@@ -38,7 +38,7 @@ def generate_graph(table):
 		y=df['pm25'],
 		name='pm2.5',
 		mode= 'lines',
-		line=dict(color="#ff7f0e", width=2)
+		line=dict(color="#2ca02c", width=2)
 	)
 	
 	# trace2 - pm10
@@ -48,9 +48,15 @@ def generate_graph(table):
 		name='pm10',
 		text=df['info'],
 		mode='lines',
-		line=dict(color="#2ca02c", width=2)
+		line=dict(color="##ff7f0e", width=2)
 		
 	)
+	
+	# get last update dt
+	lastdt = str(df.index[-1])
+	
+	# get first dt
+	firstdt = str(df.index[0])
 	
 	# combine lines
 	data = [trace0, trace1, trace2]
@@ -88,14 +94,28 @@ def generate_graph(table):
 					zerolinecolor = "#444444"
 				  ),
 			plot_bgcolor = "#ffffff",
-			paper_bgcolor	= "#ffffff"
+			paper_bgcolor	= "#ffffff",
+			shapes = [dict(
+					type = "line",
+					layer = "above",
+					line = dict(
+						color = "#cf0101",
+						width = 2
+					),
+					y0 = 25,
+					y1 = 25,
+					x0 = generate_graph(table)['firstdt'],
+					x1 = generate_graph(table)['lastdt']
+					)],
+			annotations=[dict(
+					x=generate_graph(table)['lastdt'],
+					y=25,
+					xref="x",
+					yref="y",
+					text="PM2.5 = 25"
+					)]
 			)
-	
-	# get last update dt
-	lastdt = str(df.index[-1])
-	
-	# get first dt
-	firstdt = str(df.index[0])
+
 	
 	# get last measurements of pm25 and pm10
 	lastpm = df[['pm25', 'pm10']].iloc[-1]
