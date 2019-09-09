@@ -48,7 +48,7 @@ def generate_graph(table):
 		name='pm10',
 		text=df['info'],
 		mode='lines',
-		line=dict(color="##ff7f0e", width=2)
+		line=dict(color="#ff7f0e", width=2)
 		
 	)
 	
