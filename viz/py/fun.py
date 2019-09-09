@@ -28,7 +28,8 @@ def generate_graph(table):
 		y=df['pm1'],
 		name='pm1',
 		mode= 'lines',
-		visible='legendonly'
+		visible='legendonly',
+		line=dict(color="#1f77b4", width=2)
 	)
 	
 	# trace1 - pm2.5
@@ -36,7 +37,8 @@ def generate_graph(table):
 		x=df.index,
 		y=df['pm25'],
 		name='pm2.5',
-		mode= 'lines'
+		mode= 'lines',
+		line=dict(color="#ff7f0e", width=2)
 	)
 	
 	# trace2 - pm10
@@ -45,15 +47,18 @@ def generate_graph(table):
 		y=df['pm10'],
 		name='pm10',
 		text=df['info'],
-		mode= 'lines'
+		mode='lines',
+		line=dict(color="#2ca02c", width=2)
 		
 	)
 	
 	# combine lines
 	data = [trace0, trace1, trace2]
 	
-	layout = go.Layout(yaxis = dict(title = "µg/m3"),
-				  xaxis=dict(
+	layout = go.Layout(yaxis = dict(title = "µg/m3", 
+				gridcolor = "#eeeeee", 
+				zerolinecolor = "#444444"),
+			xaxis=dict(
 					rangeselector=dict(
 					    buttons=list([
 						dict(count=6,
@@ -78,8 +83,12 @@ def generate_graph(table):
 					rangeslider=dict(
 					    visible = True
 					),
-					type='date'
-				)
+					type='date',
+					gridcolor = "#eeeeee", 
+					zerolinecolor = "#444444"
+				  ),
+			plot_bgcolor = "#ffffff",
+			paper_bgcolor	= "#ffffff"
 			)
 	
 	# get last update dt
