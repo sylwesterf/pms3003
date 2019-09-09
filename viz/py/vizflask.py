@@ -66,7 +66,9 @@ def serve_layout():
             animate = False,
             figure = go.Figure(
                 data = generate_graph(table)['data'],
-                layout = go.Layout(yaxis = dict(title = "µg/m3"),
+                layout = go.Layout(yaxis = dict(title = "µg/m3", 
+					gridcolor = "#eeeeee", 
+					zerolinecolor = "#444444"),
 				  xaxis=dict(
 					rangeselector=dict(
 					    buttons=list([
@@ -92,8 +94,24 @@ def serve_layout():
 					rangeslider=dict(
 					    visible = True
 					),
-					type='date'
-				 )
+					type='date',
+					gridcolor = "#eeeeee", 
+					zerolinecolor = "#444444"
+				 ),
+				plot_bgcolor = "#ffffff",
+				paper_bgcolor	= "#ffffff",
+				shapes = dict(
+					type = "line",
+					layer = "above",
+					line = dict(
+						color = "#cf0101",
+						width = 2
+					),
+					y0 = 25,
+					y1 = 25,
+					x0 = str(df.index[0]),
+					x1 = str(df.index[-1])
+					)
 				  )
             )
         ),
