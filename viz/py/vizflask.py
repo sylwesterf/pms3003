@@ -100,7 +100,7 @@ def serve_layout():
 				 ),
 				plot_bgcolor = "#ffffff",
 				paper_bgcolor	= "#ffffff",
-				shapes = dict(
+				shapes = [dict(
 					type = "line",
 					layer = "above",
 					line = dict(
@@ -111,7 +111,7 @@ def serve_layout():
 					y1 = 25,
 					x0 = generate_graph(table)['data'].index[0],
 					x1 = generate_graph(table)['lastdt']
-					)
+					)]
 				  )
             )
         ),
