@@ -109,7 +109,7 @@ def serve_layout():
 					),
 					y0 = 25,
 					y1 = 25,
-					x0 = generate_graph(table)['data'].index[0],
+					x0 = generate_graph(table)['firstdt'],
 					x1 = generate_graph(table)['lastdt']
 					)]
 				  )
