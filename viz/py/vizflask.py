@@ -111,6 +111,13 @@ def serve_layout():
 					y1 = 25,
 					x0 = generate_graph(table)['firstdt'],
 					x1 = generate_graph(table)['lastdt']
+					)],
+				 annotations=[dict(
+					x=generate_graph(table)['lastdt'],
+					y=25,
+					xref="x",
+					yref="y",
+					text="PM2.5 = 25"
 					)]
 				  )
             )
