@@ -109,8 +109,8 @@ def serve_layout():
 					),
 					y0 = 25,
 					y1 = 25,
-					x0 = str(df.index[0]),
-					x1 = str(df.index[-1])
+					x0 = generate_graph(table)['data'].index[0],
+					x1 = generate_graph(table)['lastdt']
 					)
 				  )
             )
