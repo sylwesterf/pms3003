@@ -80,6 +80,7 @@ For shiny server setup on EC2 follow the *pms3003/viz/R/pms3003/ec2_ubuntu_confi
 
 ##### Chart.js:
 Deploy the contents of *pms3003/viz/js-chart/* and update the url for json src file in script.js </br>
+Make sure to enable CORS for S3 bucket as per: https://stackoverflow.com/questions/49493279/react-js-how-to-get-rid-of-cross-origin-error-in-codesandbox </br>
 See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylwesterf/sylwesterf.github.io
 
 ##### plotly.js:
