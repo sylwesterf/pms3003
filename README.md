@@ -90,6 +90,7 @@ See http://sylwesterf.s3-website.eu-central-1.amazonaws.com
 ## TODO
 - ~~temperature and humidity sensor to viz~~
 - ~~a javascript viz~~
+- add PM2.5=25 limit threshold line
 - new layout w/ user interface for time-based data selection (initial data retrieval as scan takes long time on Flask)
 - case for sensors 
 - authentication
