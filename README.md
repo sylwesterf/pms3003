@@ -92,6 +92,15 @@ See https://sylwesterf.github.io/ and corresponding repo https://github.com/sylw
 Deploy the contents of *pms3003/viz/js-plotly/* and update the url for json src file in script.js </br>
 See http://sylwesterf.s3-website.eu-central-1.amazonaws.com
 
+#### 4. Extras
+
+Refer to *pms3003/scripts/* for helpful scripts: </br>
+- dynamodb-update-table.py (add humidity and temperature data to DynamoDB table)
+- dynamodb2json.py (export data to json format)
+- index-reset-reload.py (move data from non-indexed to indexed table)
+- manual-load-from-csv.py	(perfrom a manual load from csv to DynamoDB)
+- power-consumption.sh (reduce RasberryPi W power consumption)
+
 ## TODO
 - ~~temperature and humidity sensor to viz~~
 - ~~a javascript viz~~
