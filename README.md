@@ -5,9 +5,10 @@
 ![rls](https://img.shields.io/github/release-date-pre/sylwesterf/pms3003.svg?style=flat)
 ![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
-This project consists of two parts:
+This project consists of three parts:
 1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
-2. Solution for measurement collection (AWS MySQL/DynamoDB/S3) and data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2)
+2. Data transfer and storage (AWS MySQL/DynamoDB/S3) 
+3. Data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2)
 
 http://sylwester.cf/</br>
 http://sylwesterf.s3-website.eu-central-1.amazonaws.com/</br>
@@ -50,7 +51,11 @@ Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet:
 ```sh
 # run a test - output to terminal
 sudo python test.py
+```
 
+#### 2. Data transfer and storage
+
+```sh
 # run aws configure and set AWS Access Key ID and AWS Secret Access Key for DynamoDB/S3 upload
 sudo aws configure
 
@@ -64,7 +69,7 @@ sudo python csv2s3.py
 ```
 For mysql refer to *pms3003/mysql/* folder.
 
-#### 2. Data visualization 
+#### 3. Data visualization 
 
 ##### Flask (AWS EC2)
 ```sh
