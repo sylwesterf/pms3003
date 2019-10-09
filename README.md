@@ -71,7 +71,7 @@ For mysql refer to *pms3003/mysql/* folder.
 
 #### 3. Data visualization 
 
-##### Flask (AWS EC2)
+##### Flask (AWS EC2) - *work in progress*
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
@@ -113,6 +113,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - https://github.com/Thomas-Tsai/pms3003-g3
 - https://medium.com/@rfreeman/serverless-dynamic-real-time-dashboard-with-aws-dynamodb-a1a7f8d3bc01
 - https://github.com/szazo/DHT11_Python
+- https://github.com/okomarov/dash_on_flask
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
