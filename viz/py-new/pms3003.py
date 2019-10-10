@@ -15,6 +15,11 @@ def favicon():
 @pms3003.route('/')
 def index():
     return """
+<!DOCTYPE html>
+<head>
+    <title>PMS3003</title>
+</head>
+<body>  
     <h2>Air quality monitoring station: </h2>
     <ul>
         <li><a href="https://github.com/sylwesterf/pms3003">Github repo</a></li>
@@ -27,4 +32,5 @@ def index():
             </ul>
         </li>
     </ul>
-    """
+</body>
+"""

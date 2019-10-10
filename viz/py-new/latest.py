@@ -21,13 +21,13 @@ app = dash.Dash(
     requests_pathname_prefix='/latest/'
 )
 
-# html head section
-app.title = 'PMS3003'
+# ignore exceptions since callbacks to elements that don't exist in the app.layout are called
 app.config.suppress_callback_exceptions = True
 
 app.index_string = '''
 <!DOCTYPE html>
 <html>
+	<title>PMS3003</title>
     <head>
         <link rel='shortcut icon' type='image/x-icon' href='/assets/favicon.ico' />
     </head>
@@ -91,6 +91,42 @@ def update_pm25():
 	lastpm = generate_graph(table, dt_limit)['lastpm']
 	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm25'] * 4) + '%)'
 	return lastpm25
+
+# app callback for pm1 update
+@app.callback(Output('update-pm1', 'children'),
+		events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_pm1():
+	
+	# re-scan the table and get last update dt
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lastpm1 = 'PM1: ' + str(lastpm['pm1'])
+	return lastpm1
+
+# app callback for hum update
+@app.callback(Output('update-hum', 'children'),
+		events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_hum():
+	
+	# re-scan the table and get last update dt
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lasthum = 'Humidity: ' + str(lastpm['hum']) + '%'
+	return lasthum
+
+# app callback for temp update
+@app.callback(Output('update-temp', 'children'),
+		events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_temp():
+	
+	# re-scan the table and get last update dt
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lasttemp = 'Temperature: ' + str(lastpm['temp']) + '°C'
+	return lasttemp
 
 # app callback for lastdt update
 @app.callback(Output('update-date', 'children'),

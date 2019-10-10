@@ -18,13 +18,10 @@ auth = dash_auth.BasicAuth(
     pwd
 )
 
-# html head section
-app.title = 'PMS3003'
-app.config.suppress_callback_exceptions = True
-
 app.index_string = '''
 <!DOCTYPE html>
 <html>
+    <title>PMS3003</title>
     <head>
         <link rel='shortcut icon' type='image/x-icon' href='/assets/favicon.ico' />
     </head>

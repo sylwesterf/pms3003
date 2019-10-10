@@ -230,8 +230,8 @@ def generate_graph(table, filter=0):
 						showarrow=True,
 						xref="x",
 						yref="y",
-						ay=-10-df['pm25'].iloc[-135], 
-						ax=-50,
+						ay=-40-df['pm25'].iloc[-138], 
+						ax=-80,
 						text="PM2.5 = 25"
 						)]
 	
@@ -275,8 +275,8 @@ def generate_graph(table, filter=0):
 			)
 	
 	
-	# get last measurements of pm25 and pm10
-	lastpm = df[['pm25', 'pm10']].iloc[-1]
+	# get last measurements 
+	lastpm = df[['pm25', 'pm10', 'pm1', 'temp', 'hum']].iloc[-1]
 
 	# return quasi-live data
 	return {'data': data, 'layout': layout, 'firstdt': firstdt, 'lastdt': lastdt, 'lastpm': lastpm}
@@ -333,6 +333,35 @@ def serve_layout_subset(table):
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
+	    'marginTop': 5,
+	    'marginLeft': 24
+        }),
+
+		# latest results pm1
+        html.Div(id='update-pm1', children = 'PM1: ' + str(generate_graph(table, dt_limit)['lastpm']['pm1']), style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 27,
+	    'marginTop': 5,
+	    'marginLeft': 24
+        }),
+
+		# latest results humidity
+        html.Div(id='update-hum', children = 'Humidity: ' + str(generate_graph(table, dt_limit)['lastpm']['hum'])
+		  + '%', style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 18,
+	    'marginTop': 5,
+	    'marginLeft': 24
+        }),
+
+		# latest results temp
+        html.Div(id='update-temp', children = 'Temperature: ' + str(generate_graph(table, dt_limit)['lastpm']['temp'])
+		  + '°C', style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 18,
 	    'marginTop': 5,
 	    'marginLeft': 24
         }),

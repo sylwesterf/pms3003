@@ -24,7 +24,7 @@ python3 -m pip install export-dynamodb
 aws configure set default.region eu-central-1
 
 # install cron job
-printf "# cron job for dynamodb table dump into csv\n6 0 * * * export-dynamodb -t pms3003 -f csv -o /opt/pms3003/output.csv > /dev/null 2>&1\n" > cron.txt
+printf "# cron job for dynamodb table dump into csv\n6 0 * * * /usr/local/bin/export-dynamodb -t pms3003 -f csv -o /opt/pms3003/output.csv > /dev/null 2>&1\n" > cron.txt
 crontab /opt/pms3003/cron.txt
 
 # create flask virtual environment
