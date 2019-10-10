@@ -18,7 +18,7 @@ def dynamo_scan(table, filter=0):
     
     # initial scan and data wrangling
     if filter == 0:
-        response = table.scan(Limit=300)
+        response = table.scan()
     else:
         response = table.scan(FilterExpression=Attr('dt').gt(filter))	
     
@@ -31,6 +31,118 @@ def dynamo_scan(table, filter=0):
 
     return df
 
+def csv_scan(file):
+    
+    # read csv, create a pandas dataframe and wrange the data
+    df = pd.read_csv("output.csv")[['dt','pm1','pm25','pm10','temp','hum']].sort_values('dt').set_index('dt')
+    df.index = pd.to_datetime(df.index)
+    df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
+
+    return df
+
+def generate_graph_all(file):
+
+	# get a dataframe
+	df = csv_scan(file)
+
+	# trace0 - pm1
+	trace0 = go.Scatter(
+		x=df.index,
+		y=df['pm1'],
+		name='pm1',
+		mode= 'lines',
+		visible='legendonly',
+		line=dict(color="#1f77b4", width=2)
+	)
+	
+	# trace1 - pm2.5
+	trace1 = go.Scatter(
+		x=df.index,
+		y=df['pm25'],
+		name='pm2.5',
+		mode= 'lines',
+		line=dict(color="#2ca02c", width=2)
+	)
+	
+	# trace2 - pm10
+	trace2 = go.Scatter(
+		x=df.index,
+		y=df['pm10'],
+		name='pm10',
+		text=df['info'],
+		mode='lines',
+		visible='legendonly',
+		line=dict(color="#ff7f0e", width=2)
+	)
+
+	# trace 3 - PM2.5 limit line
+	trace3 = go.Scatter(
+		x=df.index,
+		y=[25]*df.shape[0],
+		name='PM2.5 = 25 µg/m3',
+		mode='lines',
+		line=dict(color="#cf0101", width=2),
+		hoverinfo='none'
+	)
+
+	# trace 4 - PM10 limit line
+	trace4 = go.Scatter(
+		x=df.index,
+		y=[50]*df.shape[0],
+		name='PM10 = 50 µg/m3',
+		mode='lines',
+		line=dict(color="#cf0101", width=2),
+		visible='legendonly',
+		hoverinfo='none'
+	)
+	
+	# combine lines
+	data = [trace0, trace1, trace2, trace3, trace4]
+
+	# create plotly layout
+	layout = go.Layout(yaxis = dict(title = "µg/m3", 
+				gridcolor = "#eeeeee", 
+				zerolinecolor = "#444444"),
+			xaxis=dict(
+					rangeselector=dict(
+						buttons=list([
+						dict(count=1,
+							label='1d',
+							step='day',
+							stepmode='backward'),
+						dict(count=7,
+							label='1w',
+							step='day',
+							stepmode='backward'),
+						dict(count=14,
+							label='2w',
+							step='day',
+							stepmode='backward'),
+						dict(count=1,
+							label='1m',
+							step='month',
+							stepmode='backward'),
+						dict(count=3,
+							label='3m',
+							step='month',
+							stepmode='backward'),	
+						dict(step='all')
+						])
+					),
+					rangeslider=dict(
+						visible = True
+					),
+					type='date',
+					gridcolor = "#eeeeee", 
+					zerolinecolor = "#444444"
+				),
+			plot_bgcolor = "#ffffff",
+			paper_bgcolor	= "#ffffff"
+			)
+
+	# return quasi-live data
+	return {'data': data, 'layout': layout}
+	
 def generate_graph(table, filter=0):
 
 	# get a dataframe
@@ -168,33 +280,6 @@ def generate_graph(table, filter=0):
 
 	# return quasi-live data
 	return {'data': data, 'layout': layout, 'firstdt': firstdt, 'lastdt': lastdt, 'lastpm': lastpm}
-	
-def serve_layout_all(table):
-    
-    # dash app layout definition
-    layout = html.Div(style={'backgroundColor': colors['background']}, children=[
-
-        # title
-        html.H1(
-            children='Air Pollution',
-            style={
-                'textAlign': 'center',
-                'color': colors['text']
-            }
-        ),
-        
-        # graph
-        dcc.Graph(
-            id = 'live-graph',
-            animate = False,
-            figure = go.Figure(
-                data = generate_graph(table)['data'],
-                layout = generate_graph(table)['layout']
-            )
-        )
-    ])
-
-    return layout
 
 def serve_layout_subset(table):
     
@@ -263,6 +348,33 @@ def serve_layout_subset(table):
         dcc.Interval(
                 id='event-update',
                 interval=60*4*1000	# update every 4 minutes
+        )
+    ])
+
+    return layout
+
+def serve_layout_all(file):
+    
+    # dash app layout definition
+    layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+
+        # title
+        html.H1(
+            children='Air Pollution',
+            style={
+                'textAlign': 'center',
+                'color': colors['text']
+            }
+        ),
+        
+        # graph
+        dcc.Graph(
+            id = 'live-graph',
+            animate = False,
+            figure = go.Figure(
+                data = generate_graph_all(file)['data'],
+                layout = generate_graph_all(file)['layout']
+            )
         )
     ])
 

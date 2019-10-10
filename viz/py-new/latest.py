@@ -18,7 +18,7 @@ table = dynamodb.Table('pms3003')
 
 app = dash.Dash(
     __name__,
-    requests_pathname_prefix='/latest_pms3003/'
+    requests_pathname_prefix='/latest/'
 )
 
 # html head section

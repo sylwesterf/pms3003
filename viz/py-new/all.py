@@ -7,15 +7,9 @@ import dash_html_components as html
 from fun import serve_layout_all
 from file import pwd
 
-# get the service resource
-dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
-
-# instantiate a table resource object 
-table = dynamodb.Table('pms3003')
-
 app = dash.Dash(
     __name__,
-    requests_pathname_prefix='/all_pms3003/'
+    requests_pathname_prefix='/all/'
 )
 
 # authentication
@@ -45,4 +39,4 @@ app.index_string = '''
 '''
 
 # call layout function 
-app.layout = serve_layout_all(table)
+app.layout = serve_layout_all("output.csv)

@@ -1,0 +1,2 @@
+# cron job for dynamodb table dump into csv
+6 0 * * * export-dynamodb -t pms3003 -f csv -o /opt/pms3003/output.csv > /dev/null 2>&1
