@@ -42,7 +42,7 @@ app.index_string = '''
 '''
 
 # call layout function - enables data refresh on page refresh
-app.layout = serve_layout_subset(table)
+app.layout = serve_layout_subset
 
 # set date filter
 dt_limit = str(datetime.datetime.now() - datetime.timedelta(days=50))

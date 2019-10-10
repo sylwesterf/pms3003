@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #!/bin/python
+import boto3
 import pandas as pd
 import plotly.graph_objs as go
 import dash_core_components as dcc
@@ -281,8 +282,14 @@ def generate_graph(table, filter=0):
 	# return quasi-live data
 	return {'data': data, 'layout': layout, 'firstdt': firstdt, 'lastdt': lastdt, 'lastpm': lastpm}
 
-def serve_layout_subset(table):
+def serve_layout_subset():
     
+    # get the service resource
+    dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
+
+    # instantiate a table resource object 
+    table = dynamodb.Table('pms3003')
+
 	# set date filter
     dt_limit = str(datetime.datetime.now() - datetime.timedelta(days=50))
     
@@ -382,7 +389,10 @@ def serve_layout_subset(table):
 
     return layout
 
-def serve_layout_all(file):
+def serve_layout_all():
+    
+	# set filename
+    file = "output.csv"
     
     # dash app layout definition
     layout = html.Div(style={'backgroundColor': colors['background']}, children=[
