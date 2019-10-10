@@ -5,7 +5,7 @@ import dash
 import dash_auth
 import dash_html_components as html
 from fun import serve_layout_all
-from pwd import pwd
+from file import pwd
 
 # get the service resource
 dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
