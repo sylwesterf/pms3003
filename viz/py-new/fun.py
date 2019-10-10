@@ -230,8 +230,8 @@ def generate_graph(table, filter=0):
 						showarrow=True,
 						xref="x",
 						yref="y",
-						ay=-40-df['pm25'].iloc[-138], 
-						ax=-80,
+						ay=-100, 
+						ax=-100,
 						text="PM2.5 = 25"
 						)]
 	
