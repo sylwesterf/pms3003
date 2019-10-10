@@ -39,4 +39,4 @@ app.index_string = '''
 '''
 
 # call layout function 
-app.layout = serve_layout_all("output.csv)
+app.layout = serve_layout_all("output.csv")
