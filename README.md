@@ -76,7 +76,9 @@ For mysql refer to *pms3003/mysql/* folder.
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py-new/prep.sh -o prep.sh
 sudo bash prep.sh
+```
 
+```sh
 /opt/pms3003/
 .
 ├── pms3003.py
@@ -89,6 +91,7 @@ sudo bash prep.sh
 ├── wsgi.py
 ├── prep.sh
 ├── output.csv
+├── cron.txt
 └── requirements.txt
 ```
 
@@ -124,10 +127,10 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 ## TODO
 - ~~temperature and humidity sensor to viz~~
 - ~~a javascript viz~~
-- add PM2.5=25 limit threshold line
-- new layout w/ user interface for time-based data selection (initial data retrieval as scan takes long time on Flask)
+- ~~add PM2.5=25 limit threshold line~~
+- ~~new layout~~
 - case for sensors 
-- authentication
+- ~~authentication~~
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
