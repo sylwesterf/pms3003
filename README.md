@@ -71,7 +71,15 @@ For mysql refer to *pms3003/mysql/* folder.
 
 #### 3. Data visualization 
 
-##### Flask (AWS EC2) - *work in progress*
+##### Flask (AWS EC2) - NEW *work in progress*
+```sh
+# just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
+curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py-new/prep.sh -o prep.sh
+sudo bash prep.sh
+rm prep.sh
+```
+
+##### Flask (AWS EC2) - OLD
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py/prep.sh -o prep.sh
