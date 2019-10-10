@@ -12,7 +12,7 @@ yum install python3 -y
 pip3 install --upgrade pip
 
 # install virtualenv for isolated Python environment
-pip3 install virtualenv
+pip3 install virtualenv --user
 
 # create flask virtual environment
 mkdir $flaskdir && cd $flaskdir
