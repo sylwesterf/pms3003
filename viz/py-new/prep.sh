@@ -12,11 +12,11 @@ yum install python3 -y
 pip3 install --upgrade pip
 
 # install virtualenv for isolated Python environment
-pip3 install virtualenv --user
+python3 -m pip install virtualenv
 
 # create flask virtual environment
 mkdir $flaskdir && cd $flaskdir
-virtualenv flask
+/usr/local/bin/virtualenv flask
 
 # get code from github
 git clone https://github.com/sylwesterf/pms3003.git
