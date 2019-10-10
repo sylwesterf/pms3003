@@ -71,11 +71,28 @@ For mysql refer to *pms3003/mysql/* folder.
 
 #### 3. Data visualization 
 
-##### Flask (AWS EC2) - NEW *work in progress*
+##### Flask (AWS EC2) - NEW 
 ```sh
 # just add below commands to EC2 user data when launching an instance or ssh into it and run it afterwards
 curl https://raw.githubusercontent.com/sylwesterf/pms3003/master/viz/py-new/prep.sh -o prep.sh
 sudo bash prep.sh
+```
+
+```sh
+/opt/pms3003/
+.
+├── pms3003.py
+├── latest.py
+├── all.py
+├── fun.py
+├── assets/
+│   └── favicon.ico
+├── file.py
+├── wsgi.py
+├── prep.sh
+├── output.csv
+├── cron.txt
+└── requirements.txt
 ```
 
 ##### Flask (AWS EC2) - OLD
@@ -110,10 +127,10 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 ## TODO
 - ~~temperature and humidity sensor to viz~~
 - ~~a javascript viz~~
-- add PM2.5=25 limit threshold line
-- new layout w/ user interface for time-based data selection (initial data retrieval as scan takes long time on Flask)
+- ~~add PM2.5=25 limit threshold line~~
+- ~~new layout~~
 - case for sensors 
-- authentication
+- ~~authentication~~
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
