@@ -37,7 +37,7 @@ git clone https://github.com/sylwesterf/pms3003.git
 cp -r pms3003/viz/py-new/* .
 
 # activate script flask venv, install flask app requirements and run wsgi server
-/bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:application &"
+/bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --timeout 60 --bind 0.0.0.0:80 wsgi:application &"
 
 # test in windows env
 #waitress-serve wsgi:application
