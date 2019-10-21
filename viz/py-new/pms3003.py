@@ -17,7 +17,7 @@ def index():
     return """
 <!DOCTYPE html>
 <head>
-    <title>PMS3003</title>
+    <title>PMS3003</title> 
 </head>
 <body>  
     <h2>Air quality monitoring station: </h2>
@@ -31,6 +31,11 @@ def index():
             <li>All data: <a href="/all">/all</a></li>
             </ul>
         </li>
+    </ul>
+    <h2>Metaheuristic optimization:</h2>
+    <ul>
+        <li><a href="https://github.com/sylwesterf/optim">Github repo</a></li>
+        <li><a href="https://sylwesterf.shinyapps.io/metaheuristic-opt/">Shiny implementation on shinyapps.io</a></li>
     </ul>
 </body>
 """
