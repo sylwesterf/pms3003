@@ -21,7 +21,7 @@ def dynamo_scan(table, filter=0):
     if filter == 0:
         response = table.scan()
     else:
-        response = table.scan(FilterExpression=Attr('dt').gt(filter))	
+        response = table.query(KeyConditionExpression=Key('dt').gt(filter) & Key('device').eq('pms3003'))	
     
     data = response['Items']
     
