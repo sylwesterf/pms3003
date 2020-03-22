@@ -57,8 +57,8 @@ while 1:
     #pm.write_serial('BM\xe1\x00\x01\x01q', 5)
 
     # get PM1, PM2.5, PM10 values
-    pm1, pm25, pm10 = pm.single_read() #verify if need to open/close port; update class potentially
-
+    pm1, pm25, pm10 = pm.single_read()
+    
     # get current timestamp
     pm_date = (time.strftime('%Y-%m-%d ') + time.strftime('%H:%M:%S'))
 
