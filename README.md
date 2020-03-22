@@ -133,6 +133,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~authentication~~
 - sending data to kafka
 - contenerize viz
+- python 3
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
