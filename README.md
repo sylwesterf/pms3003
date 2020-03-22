@@ -131,6 +131,8 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~new layout~~
 - case for sensors 
 - ~~authentication~~
+- sending data to kafka
+- contenerize viz
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
