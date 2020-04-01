@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# input variables: 
+# $1    $AWS_REGION 
+# $2    $DYNAMODB_TABLE
+# $3    $DASH_USR
+# $4    $DASH_PWD
 
 # define flask app directory
 flaskdir="/opt/pms3003/"
@@ -21,7 +26,7 @@ mkdir $flaskdir && cd $flaskdir
 python3 -m pip install export-dynamodb
 
 # set default region
-aws configure set default.region eu-central-1
+aws configure set default.region $1
 
 # install cron job
 printf "# cron job for dynamodb table dump into csv\n6 0 * * * /usr/local/bin/export-dynamodb -t pms3003 -f csv -o /opt/pms3003/output.csv > /dev/null 2>&1\n" > cron.txt
@@ -37,12 +42,12 @@ git clone https://github.com/sylwesterf/pms3003.git
 cp -r pms3003/viz/py-new/* .
 
 # update aws region and dynamodb table name from variables
-sed -i -e "s/specify_aws_region/$AWS_REGION/" latest.py
-sed -i -e "s/specify_dynamodb_table/$DYNAMODB_TABLE/" latest.py
+sed -i -e "s/specify_aws_region/$1/" latest.py
+sed -i -e "s/specify_dynamodb_table/$2/" latest.py
 
 # update dash auth user and password
-sed -i -e "s/test_usr/$DASH_USR/" file.py
-sed -i -e "s/test_pwd/$DASH_PWD/" file.py
+sed -i -e "s/test_usr/$3/" file.py
+sed -i -e "s/test_pwd/$4/" file.py
 
 # activate script flask venv, install flask app requirements and run wsgi server
 /bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --timeout 60 --bind 0.0.0.0:80 wsgi:application &"
