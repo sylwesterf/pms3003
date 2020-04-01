@@ -326,7 +326,7 @@ def serve_layout_subset():
 	    
 		# latest results pm10
         html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table, dt_limit)['lastpm']['pm10']) 
-		 + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm10'] * 2) + '%)', style={
+		 + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm10']) * 2) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -336,7 +336,7 @@ def serve_layout_subset():
 	    
 		# latest results pm25
         html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table, dt_limit)['lastpm']['pm25'])
-		  + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm25'] * 4) + '%)', style={
+		  + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm25']) * 4) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,

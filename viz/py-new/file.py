@@ -1,3 +1,3 @@
 pwd = [
-    ['test', 'test']
+    ['test_usr', 'test_pwd']
 ]

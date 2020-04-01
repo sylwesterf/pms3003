@@ -10,11 +10,15 @@ from fun import generate_graph, serve_layout_subset
 import datetime
 from datetime import timedelta
 
+# set aws region and table name
+aws_region = 'specify_aws_region'
+dynamodb_table = 'specify_dynamodb_table'
+
 # get the service resource
-dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
+dynamodb = boto3.resource('dynamodb', region_name = aws_region)
 
 # instantiate a table resource object 
-table = dynamodb.Table('pms3003')
+table = dynamodb.Table(dynamodb_table)
 
 app = dash.Dash(
     __name__,
@@ -75,9 +79,9 @@ def update_header():
 # function for latest results
 def update_pm10():
 	
-	# re-scan the table and get last update dt
+	# re-scan the table and get last pm10
 	lastpm = generate_graph(table, dt_limit)['lastpm']
-	lastpm10 = 'PM10: ' + str(lastpm['pm10']) + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm10'] * 2) + '%)'
+	lastpm10 = 'PM10: ' + str(lastpm['pm10']) + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm10']) * 2) + '%)'
 	return lastpm10
 
 # app callback for pm25 update
@@ -87,9 +91,9 @@ def update_pm10():
 # function for latest results
 def update_pm25():
 	
-	# re-scan the table and get last update dt
+	# re-scan the table and get last pm25
 	lastpm = generate_graph(table, dt_limit)['lastpm']
-	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm25'] * 4) + '%)'
+	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm25']) * 4) + '%)'
 	return lastpm25
 
 # app callback for pm1 update
@@ -111,7 +115,7 @@ def update_pm1():
 # function for latest results
 def update_hum():
 	
-	# re-scan the table and get last update dt
+	# re-scan the table and get last hum
 	lastpm = generate_graph(table, dt_limit)['lastpm']
 	lasthum = 'Humidity: ' + str(lastpm['hum']) + '%'
 	return lasthum
@@ -123,7 +127,7 @@ def update_hum():
 # function for latest results
 def update_temp():
 	
-	# re-scan the table and get last update dt
+	# re-scan the table and get last temp
 	lastpm = generate_graph(table, dt_limit)['lastpm']
 	lasttemp = 'Temperature: ' + str(lastpm['temp']) + '°C'
 	return lasttemp

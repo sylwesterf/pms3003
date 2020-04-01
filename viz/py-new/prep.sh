@@ -36,6 +36,14 @@ git clone https://github.com/sylwesterf/pms3003.git
 # copy viz files
 cp -r pms3003/viz/py-new/* .
 
+# update aws region and dynamodb table name from variables
+sed -i -e "s/specify_aws_region/$AWS_REGION/" latest.py
+sed -i -e "s/specify_dynamodb_table/$DYNAMODB_TABLE/" latest.py
+
+# update dash auth user and password
+sed -i -e "s/test_usr/$DASH_USR/" file.py
+sed -i -e "s/test_pwd/$DASH_PWD/" file.py
+
 # activate script flask venv, install flask app requirements and run wsgi server
 /bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --timeout 60 --bind 0.0.0.0:80 wsgi:application &"
 
