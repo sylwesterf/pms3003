@@ -5,7 +5,7 @@ import numpy as np
 from pms3003 import PMSensor
 import RPi.GPIO as GPIO
 import dht11
-from kafka import KafkaProducer
+import pymongo
 
 # set sensor environment - indoor/outdoor (0/1)
 environment = 1
@@ -15,31 +15,20 @@ environment = 1
 # /dev/ttyS0 -> GPIO serial port (also referenced as '/dev/serial0')
 device = '/dev/serial0' 
 
-# set up kafka server 
-kafka_server = 'xyz'
-kafka_username = 'xyz'
-kafka_password = 'xyz'
-    
-# topic to write to
-topic = 'pms3003'
+# set up mongo db variables
+mongo_server = "xyz:27017"
+mongo_db = "xyz"
+mongo_col = "xyz"
 
-# instantiate producer
-producer = KafkaProducer(
-    bootstrap_servers=kafka_server,
-    sasl_plain_username=kafka_username,
-    sasl_plain_password=kafka_password
-)
+# instantiate mongodb client
+client = pymongo.MongoClient("mongodb://" + mongo_server)
+db = client[mongo_db]
+col = db[mongo_col]
 
-#producer = KafkaProducer(
-#    bootstrap_servers=kafka_server,
-#    sasl_plain_username=kafka_username,
-#    sasl_plain_password=kafka_password,
-#    security_protocol = 'SASL_SSL',
-#    sasl_mechanism = 'SCRAM-SHA-256'
-#)
+last_pm1, last_pm25, last_pm10 = 0, 0, 0
 
 # run in an infinite loop
-while 1:
+while True:
 
     # get dht11 data
     # initialize GPIO
@@ -65,12 +54,20 @@ while 1:
     pm = PMSensor(device, environment)
 
     # wakeup sensor and put into active mode if necessary
-    #pm.write_serial(b'BM\xe4\x00\x01\x01t', 5)
-    #pm.write_serial(b'BM\xe1\x00\x01\x01q', 5)
+    #pm.write_serial('BM\xe4\x00\x01\x01t', 5)
+    #pm.write_serial('BM\xe1\x00\x01\x01q', 5)
 
     # get PM1, PM2.5, PM10 values
     pm1, pm25, pm10 = pm.single_read()
     
+    # data checks
+    if pm1 >= pm25 or pm25 >= pm10:
+        pm1, pm25, pm10 = last_pm1, last_pm25, last_pm10
+    elif pm25 != 0 and last_pm25 != 0 and (last_pm25 * 3 <= pm25 or pm25 <= last_pm25 * 0.3):
+        pm1, pm25, pm10 = last_pm1, last_pm25, last_pm10
+
+    last_pm1, last_pm25, last_pm10 = pm1, pm25, pm10
+
     # get current timestamp
     pm_date = (time.strftime('%Y-%m-%d ') + time.strftime('%H:%M:%S'))
 
@@ -86,5 +83,5 @@ while 1:
     }
 
     # send data
-    producer.send(topic, value=str(msg))
-    sleep(5)
+    col.insert_one(msg)
+    sleep(1)
