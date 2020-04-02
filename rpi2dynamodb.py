@@ -7,9 +7,19 @@ from pms3003 import PMSensor
 import RPi.GPIO as GPIO
 import dht11
 
-# run aws configure and set AWS Access Key ID and AWS Secret Access Key
 # set up project path for csv generation
 path = '/project/path/'
+
+# set sensor environment - indoor/outdoor (0/1)
+environment = 1
+
+# set up gpio serial port
+# /dev/ttyAMA0 -> Bluetooth (or GPIO when Bluetooth module turned off)
+# /dev/ttyS0 -> GPIO serial port (also referenced as '/dev/serial0')
+device = '/dev/serial0' 
+
+# set up dynamodb table name
+dynamodb_table = 'pms3003'
 
 # get dht11 data
 # initialize GPIO
@@ -25,7 +35,7 @@ n = 10
 data_dht = []
 
 # loop over
-for i in range(1,n/2):
+for i in range(1,int(n/2)):
         while True:
                 result = instance.read()
                 if result.is_valid():
@@ -34,8 +44,7 @@ for i in range(1,n/2):
         time.sleep(2)
 
 # call a PMSensor class
-# 0 for indoor sensing, 1 for outdoor
-pm = PMSensor(1)
+pm = PMSensor(device, environment)
 
 # get PM1, PM2.5, PM10 values
 data = pm.read_pm()
@@ -49,7 +58,7 @@ data = data[np.array(data[:,2], dtype=float) > np.array(data[:,1], dtype=float)]
 pm1, pm25, pm10 = np.mean(data, axis=0, dtype=int)
 
 # continue measuring hum and temp
-for i in range(1,n/2):
+for i in range(1,int(n/2)):
         while True:
                 result = instance.read()
                 if result.is_valid():
@@ -77,7 +86,7 @@ with open(path + 'pm-archive.csv','a+') as f:
 
 # write to dynamodb table
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('pms3003')	#verify table name
+table = dynamodb.Table(dynamodb_table)
 
 try:
         # insert the data
@@ -85,12 +94,12 @@ try:
                 Item={
                 'device' : 'pms3003',
                 'dt' : pm_date,
-                'pm1' : pm1,
-                'pm25' : pm25,
-                'pm10' : pm10,
-                'temp' : temp,
-                'hum' : hum,
-            }
+                'pm1' : str(pm1),
+                'pm25' : str(pm25),
+                'pm10' : str(pm10),
+                'temp' : str(temp),
+                'hum' : str(hum)
+                }
         )
 
 except Exception:
