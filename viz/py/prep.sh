@@ -29,8 +29,8 @@ cp pms3003/viz/py/{fun.py,requirements.txt,vizflask.py,wsgi.py} .
 cp -a pms3003/viz/py/assets .
 
 # update aws region and dynamodb table name from variables
-sed -i -e "s/specify_aws_region/$1/" latest.py
-sed -i -e "s/specify_dynamodb_table/$2/" latest.py
+sed -i -e "s/specify_aws_region/$1/" vizflask.py
+sed -i -e "s/specify_dynamodb_table/$2/" vizflask.py
 
 # activate script flask venv, install flask app requirements and run wsgi server
 /bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:server &"
