@@ -44,6 +44,8 @@ cp -r pms3003/viz/py-new/* .
 # update aws region and dynamodb table name from variables
 sed -i -e "s/specify_aws_region/$1/" latest.py
 sed -i -e "s/specify_dynamodb_table/$2/" latest.py
+sed -i -e "s/specify_aws_region/$1/" fun.py
+sed -i -e "s/specify_dynamodb_table/$2/" fun.py
 
 # create a file for storing authentication user for dash
 printf "pwd = [['$3', '$4']]" > file.py

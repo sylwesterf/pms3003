@@ -284,15 +284,19 @@ def generate_graph(table, filter=0):
 
 def serve_layout_subset():
     
+    # set aws region and table name
+    aws_region = 'specify_aws_region'
+    dynamodb_table = 'specify_dynamodb_table'
+
     # get the service resource
-    dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
+    dynamodb = boto3.resource('dynamodb', region_name = aws_region)
 
     # instantiate a table resource object 
-    table = dynamodb.Table('pms3003')
+    table = dynamodb.Table(dynamodb_table)
 
-	# set date filter
+    # set date filter
     dt_limit = str(datetime.datetime.now() - datetime.timedelta(days=50))
-    
+
     # dash app layout definition
     layout = html.Div(style={'backgroundColor': colors['background']}, children=[
 

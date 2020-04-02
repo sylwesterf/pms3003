@@ -3,24 +3,29 @@
 import boto3
 import pandas as pd
 import plotly.graph_objs as go
+from boto3.dynamodb.conditions import Key, Attr
 
-def dynamo_scan(table):
-	
-	# initial scan and data wrangling
-	response = table.scan(table)
-	data = response['Items']
+def dynamo_scan(table, filter=0):
+    
+    # initial scan and data wrangling
+    if filter == 0:
+        response = table.scan()
+    else:
+        response = table.query(KeyConditionExpression=Key('dt').gt(filter) & Key('device').eq('pms3003'))	
+    
+    data = response['Items']
+    
+    # create a pandas dataframe, wrangle the data
+    df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt')
+    df.index = pd.to_datetime(df.index)
+    df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
 
-	# create a pandas dataframe, wrangle the data
-	df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt')
-	df.index = pd.to_datetime(df.index)
-	df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
-	
-	return df
+    return df
 
-def generate_graph(table):
+def generate_graph(table, filter=0):
 
 	# get a dataframe
-	df = dynamo_scan(table)
+	df = dynamo_scan(table, filter)
 
 	# trace0 - pm1
 	trace0 = go.Scatter(
@@ -104,11 +109,11 @@ def generate_graph(table):
 					),
 					y0 = 25,
 					y1 = 25,
-					x0 = generate_graph(table)['firstdt'],
-					x1 = generate_graph(table)['lastdt']
+					x0 = generate_graph(table, dt_limit)['firstdt'],
+					x1 = generate_graph(table, dt_limit)['lastdt']
 					)],
 			annotations=[dict(
-					x=generate_graph(table)['lastdt'],
+					x=generate_graph(table, dt_limit)['lastdt'],
 					y=25,
 					xref="x",
 					yref="y",

@@ -11,16 +11,21 @@ from dash.dependencies import Output, Event
 import plotly
 import plotly.graph_objs as go
 from fun import dynamo_scan, generate_graph
+import datetime
 
 # set aws region and table name
 aws_region = 'specify_aws_region'
 dynamodb_table = 'specify_dynamodb_table'
+days_back = 21
 
 # get the service resource
 dynamodb = boto3.resource('dynamodb', region_name = aws_region)
 
 # instantiate a table resource object 
 table = dynamodb.Table(dynamodb_table)
+
+# set date filter
+dt_limit = str(datetime.datetime.now() - datetime.timedelta(days=days_back))
 
 # initiate a dash app
 server = flask.Flask(__name__)
@@ -57,7 +62,7 @@ def serve_layout():
 
         # title
         html.H1(
-            children='Zanieczyszczenie powietrza',
+            children='Air Pollution',
             style={
                 'textAlign': 'center',
                 'color': colors['text']
@@ -69,7 +74,7 @@ def serve_layout():
             id = 'live-graph',
             animate = False,
             figure = go.Figure(
-                data = generate_graph(table)['data'],
+                data = generate_graph(table, dt_limit)['data'],
                 layout = go.Layout(yaxis = dict(title = "µg/m3", 
 					gridcolor = "#eeeeee", 
 					zerolinecolor = "#444444"),
@@ -113,11 +118,11 @@ def serve_layout():
 					),
 					y0 = 25,
 					y1 = 25,
-					x0 = generate_graph(table)['firstdt'],
-					x1 = generate_graph(table)['lastdt']
+					x0 = generate_graph(table, dt_limit)['firstdt'],
+					x1 = generate_graph(table, dt_limit)['lastdt']
 					)],
 				 annotations=[dict(
-					x=generate_graph(table)['lastdt'],
+					x=generate_graph(table, dt_limit)['lastdt'],
 					y=25,
 					xref="x",
 					yref="y",
@@ -128,7 +133,7 @@ def serve_layout():
         ),
             
         # header pm
-        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:15] + '0:', style={
+        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table, dt_limit)['lastdt'][11:13] + '.' + generate_graph(table, dt_limit)['lastdt'][14:15] + '0:', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -137,8 +142,8 @@ def serve_layout():
         }),
 	    
 	# latest results pm10
-        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table)['lastpm']['pm10']) 
-		 + ' (' +  str(generate_graph(table)['lastpm']['pm10'] * 2) + '%)', style={
+        html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table, dt_limit)['lastpm']['pm10']) 
+		 + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm10'] * 2) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -147,8 +152,8 @@ def serve_layout():
         }),
 	    
 	# latest results pm25
-        html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table)['lastpm']['pm25'])
-		  + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)', style={
+        html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table, dt_limit)['lastpm']['pm25'])
+		  + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm25'] * 4) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -157,7 +162,7 @@ def serve_layout():
         }),
 	    
 	# last updated date
-        html.Div(id='update-date', children = 'Ostatnia aktualizacja: ' + generate_graph(table)['lastdt'], style={
+        html.Div(id='update-date', children = 'Ostatnia aktualizacja: ' + generate_graph(table, dt_limit)['lastdt'], style={
             'textAlign': 'right',
             'color': colors['text'],
             'fontSize': 9
@@ -183,7 +188,7 @@ app.layout = serve_layout
 def update_graph():
     
 	# re-scan the table
-	return generate_graph(table)
+	return generate_graph(table, dt_limit)
 
 # app callback for header update
 @app.callback(Output('update-header', 'children'),
@@ -193,7 +198,7 @@ def update_graph():
 def update_header():
 	
 	# re-scan the table and get last update dt
-	lastdt = 'Stan na godz. ' + generate_graph(table)['lastdt'][11:13] + '.' + generate_graph(table)['lastdt'][14:15] + '0:'
+	lastdt = 'Data as of: ' + generate_graph(table, dt_limit)['lastdt'][11:13] + '.' + generate_graph(table, dt_limit)['lastdt'][14:15] + '0:'
 	return lastdt
 
 # app callback for pm10 update
@@ -204,8 +209,8 @@ def update_header():
 def update_pm10():
 	
 	# re-scan the table and get last update dt
-	lastpm = generate_graph(table)['lastpm']
-	lastpm10 = 'PM10: ' + str(lastpm['pm10']) + ' (' +  str(generate_graph(table)['lastpm']['pm10'] * 2) + '%)'
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lastpm10 = 'PM10: ' + str(lastpm['pm10']) + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm10']) * 2) + '%)'
 	return lastpm10
 
 # app callback for pm25 update
@@ -216,8 +221,8 @@ def update_pm10():
 def update_pm25():
 	
 	# re-scan the table and get last update dt
-	lastpm = generate_graph(table)['lastpm']
-	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(generate_graph(table)['lastpm']['pm25'] * 4) + '%)'
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lastpm25 = 'PM2.5: ' + str(lastpm['pm25']) + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm25']) * 4) + '%)'
 	return lastpm25
 
 # app callback for lastdt update
@@ -228,7 +233,7 @@ def update_pm25():
 def update_date():
 	
 	# re-scan the table and get last update dt
-	lastdt = 'Ostatnia aktualizacja: ' + generate_graph(table)['lastdt']
+	lastdt = 'Last update: ' + generate_graph(table, dt_limit)['lastdt']
 	return lastdt
 
 # run
