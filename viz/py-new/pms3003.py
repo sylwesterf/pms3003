@@ -22,7 +22,6 @@ def index():
 <body>  
     <h2>Air quality monitoring station: </h2>
     <ul>
-        <li>Flask deployment on EC2: 
         <li>Last 50 days of data: <a href="/latest">/latest</a></li>
         <li>All data: <a href="/all">/all</a></li>
     </ul>
