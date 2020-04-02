@@ -45,9 +45,8 @@ cp -r pms3003/viz/py-new/* .
 sed -i -e "s/specify_aws_region/$1/" latest.py
 sed -i -e "s/specify_dynamodb_table/$2/" latest.py
 
-# update dash auth user and password
-sed -i -e "s/test_usr/$3/" file.py
-sed -i -e "s/test_pwd/$4/" file.py
+# create a file for storing authentication user for dash
+printf "pwd = [['$3', '$4']]" > file.py
 
 # activate script flask venv, install flask app requirements and run wsgi server
 /bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --timeout 60 --bind 0.0.0.0:80 wsgi:application &"
