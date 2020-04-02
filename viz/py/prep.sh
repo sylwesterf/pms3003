@@ -19,7 +19,7 @@ python3 -m pip install virtualenv
 
 # create flask virtual environment
 mkdir $flaskdir && cd $flaskdir
-virtualenv flask
+/usr/local/bin/virtualenv flask
 
 # get code from github
 git clone https://github.com/sylwesterf/pms3003.git
