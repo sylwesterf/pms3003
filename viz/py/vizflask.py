@@ -12,11 +12,15 @@ import plotly
 import plotly.graph_objs as go
 from fun import dynamo_scan, generate_graph
 
+# set aws region and table name
+aws_region = 'specify_aws_region'
+dynamodb_table = 'specify_dynamodb_table'
+
 # get the service resource
-dynamodb = boto3.resource('dynamodb', region_name = 'eu-central-1')
+dynamodb = boto3.resource('dynamodb', region_name = aws_region)
 
 # instantiate a table resource object 
-table = dynamodb.Table('pms3003')
+table = dynamodb.Table(dynamodb_table)
 
 # initiate a dash app
 server = flask.Flask(__name__)

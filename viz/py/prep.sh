@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# input variables: 
+# $1    $AWS_REGION 
+# $2    $DYNAMODB_TABLE
 
 # define flask app directory
 flaskdir="/opt/pms3003/"
@@ -7,13 +10,12 @@ flaskdir="/opt/pms3003/"
 yum install nginx, git -y
 amazon-linux-extras install nginx1.12 -y
 
-# get pip
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-rm -f get-pip.py
+# install python3
+yum install python3 -y
+python3 -m pip install --upgrade pip
 
 # install virtualenv for isolated Python environment
-pip install virtualenv
+python3 -m pip install virtualenv
 
 # create flask virtual environment
 mkdir $flaskdir && cd $flaskdir
@@ -26,5 +28,9 @@ git clone https://github.com/sylwesterf/pms3003.git
 cp pms3003/viz/py/{fun.py,requirements.txt,vizflask.py,wsgi.py} .
 cp -a pms3003/viz/py/assets .
 
+# update aws region and dynamodb table name from variables
+sed -i -e "s/specify_aws_region/$1/" latest.py
+sed -i -e "s/specify_dynamodb_table/$2/" latest.py
+
 # activate script flask venv, install flask app requirements and run wsgi server
-/bin/bash -c ". /opt/pms3003/flask/bin/activate; pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:server &"
+/bin/bash -c ". /opt/pms3003/flask/bin/activate; python3 -m pip install -r requirements.txt; gunicorn --bind 0.0.0.0:80 wsgi:server &"
