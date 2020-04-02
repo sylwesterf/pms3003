@@ -297,6 +297,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - manual-load-from-csv.py (perfrom a manual load from csv to DynamoDB)
 - power-consumption.sh (reduce RasberryPi W power consumption)
 - serial-test.py (test gpio port)
+- rpi2dynamodb_onlypm.py (excludes dht11 data)
 
 ## TODO
 - ~~temperature and humidity sensor to viz~~
