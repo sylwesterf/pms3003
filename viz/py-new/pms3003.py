@@ -22,20 +22,11 @@ def index():
 <body>  
     <h2>Air quality monitoring station: </h2>
     <ul>
-        <li><a href="https://github.com/sylwesterf/pms3003">Github repo</a></li>
-        <li><a href="https://sylwesterf.github.io/">Chart.js implementation on Github webpages</a></li>
-        <li><a href="http://sylwesterf.s3-website.eu-central-1.amazonaws.com">plotly.js implementation on S3</a></li>
         <li>Flask deployment on EC2: 
-            <ul>
-            <li>Last 50 days of data: <a href="/latest">/latest</a></li>
-            <li>All data: <a href="/all">/all</a></li>
-            </ul>
-        </li>
+        <li>Last 50 days of data: <a href="/latest">/latest</a></li>
+        <li>All data: <a href="/all">/all</a></li>
     </ul>
-    <h2>Metaheuristic optimization:</h2>
-    <ul>
-        <li><a href="https://github.com/sylwesterf/optim">Github repo</a></li>
-        <li><a href="https://sylwesterf.shinyapps.io/metaheuristic-opt/">Shiny implementation on shinyapps.io</a></li>
-    </ul>
+    </br>
+    <a href="https://github.com/sylwesterf/pms3003">Github repo</a>
 </body>
 """
