@@ -84,10 +84,6 @@ def generate_graph(table, filter=0):
 						     label='1w',
 						     step='day',
 						     stepmode='backward'),
-						dict(count=14,
-						     label='2w',
-						     step='day',
-						     stepmode='backward'),
 						dict(step='all')
 					    ])
 					),
@@ -109,11 +105,11 @@ def generate_graph(table, filter=0):
 					),
 					y0 = 25,
 					y1 = 25,
-					x0 = generate_graph(table, dt_limit)['firstdt'],
-					x1 = generate_graph(table, dt_limit)['lastdt']
+					x0 = firstdt,
+					x1 = lastdt
 					)],
 			annotations=[dict(
-					x=generate_graph(table, dt_limit)['lastdt'],
+					x=str(df.index[-130]),
 					y=25,
 					xref="x",
 					yref="y",
