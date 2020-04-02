@@ -5,12 +5,10 @@ import numpy as np
 
 class PMSensor():
 	
-	def __init__(self, env):
+	def __init__(self, port, env):
 	
-		# hardcode the gpio serial port
-		# /dev/ttyAMA0 -> Bluetooth (or GPIO when Bluetooth module turned off)
-		# /dev/ttyS0 -> GPIO serial port 
-		self.port = '/dev/ttyS0' 
+		# gpio serial port
+		self.port = port 
 		
 		# sensor placed indoor/outdoor (0/1)
 		self.standard = env
@@ -37,7 +35,7 @@ class PMSensor():
 		
 			#get two starting bytes
 			start_bytes = self.serial.readline(2)
-			start_bytes_hex = start_bytes.encode('hex')
+			start_bytes_hex = start_bytes.hex()
 			
 			#check for fixed characters
 			if start_bytes_hex == '424d':
@@ -49,7 +47,7 @@ class PMSensor():
 		data_uart = self.serial.readline(22)
 		
 		# encode
-		data_hex = data_uart.encode('hex')
+		data_hex = data_uart.hex()
 		
 		# calculate pm values
 		# indoor
@@ -110,10 +108,10 @@ class PMSensor():
 	def read_pm(self):
 		
 		# wakeup sensor with 45sec timeout
-		self.write_serial('BM\xe4\x00\x01\x01t', 55)
+		self.write_serial(b'BM\xe4\x00\x01\x01t', 55)
 		
 		# put into active mode
-		self.write_serial('BM\xe1\x00\x01\x01q', 15)
+		self.write_serial(b'BM\xe1\x00\x01\x01q', 15)
 		
 		# measure pm n-times
 		n = 10
@@ -124,13 +122,13 @@ class PMSensor():
 			time.sleep(5)
 		
 		# reshape list into matrix
-                data = data.reshape((n,3))
-		
+		data = data.reshape((n,3))
+
 		# put the sensor in the passive mode
-		self.write_serial('BM\xe1\x00\x00\x01p')
+		self.write_serial(b'BM\xe1\x00\x00\x01p')
 		
 		# standby mode, aka. sleep
-		self.write_serial('BM\xe4\x00\x00\x01s')
+		self.write_serial(b'BM\xe4\x00\x00\x01s')
 		
 		# close serial port
 		self.serial.close()
