@@ -42,6 +42,7 @@ def generate_graph(table, filter=0):
 		x=df.index,
 		y=df['pm25'],
 		name='pm2.5',
+		text=df['info'],
 		mode= 'lines',
 		line=dict(color="#2ca02c", width=2)
 	)
@@ -51,8 +52,8 @@ def generate_graph(table, filter=0):
 		x=df.index,
 		y=df['pm10'],
 		name='pm10',
-		text=df['info'],
 		mode='lines',
+		visible='legendonly',
 		line=dict(color="#ff7f0e", width=2)
 		
 	)

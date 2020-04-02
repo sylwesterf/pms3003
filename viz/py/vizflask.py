@@ -93,10 +93,6 @@ def serve_layout():
 						     label='1w',
 						     step='day',
 						     stepmode='backward'),
-						dict(count=14,
-						     label='2w',
-						     step='day',
-						     stepmode='backward'),
 						dict(step='all')
 					    ])
 					),
@@ -133,7 +129,7 @@ def serve_layout():
         ),
             
         # header pm
-        html.Div(id='update-header', children = 'Stan na godz. ' + generate_graph(table, dt_limit)['lastdt'][11:13] + '.' + generate_graph(table, dt_limit)['lastdt'][14:15] + '0:', style={
+        html.Div(id='update-header', children = 'Data as of: ' + generate_graph(table, dt_limit)['lastdt'][11:13] + '.' + generate_graph(table, dt_limit)['lastdt'][14:15] + '0:', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -143,7 +139,7 @@ def serve_layout():
 	    
 	# latest results pm10
         html.Div(id='update-pm10', children = 'PM10: ' + str(generate_graph(table, dt_limit)['lastpm']['pm10']) 
-		 + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm10'] * 2) + '%)', style={
+		 + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm10']) * 2) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -153,7 +149,7 @@ def serve_layout():
 	    
 	# latest results pm25
         html.Div(id='update-pm25', children = 'PM2.5: ' + str(generate_graph(table, dt_limit)['lastpm']['pm25'])
-		  + ' (' +  str(generate_graph(table, dt_limit)['lastpm']['pm25'] * 4) + '%)', style={
+		  + ' (' +  str(int(generate_graph(table, dt_limit)['lastpm']['pm25']) * 4) + '%)', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 27,
@@ -162,7 +158,7 @@ def serve_layout():
         }),
 	    
 	# last updated date
-        html.Div(id='update-date', children = 'Ostatnia aktualizacja: ' + generate_graph(table, dt_limit)['lastdt'], style={
+        html.Div(id='update-date', children = 'Last update: ' + generate_graph(table, dt_limit)['lastdt'], style={
             'textAlign': 'right',
             'color': colors['text'],
             'fontSize': 9
