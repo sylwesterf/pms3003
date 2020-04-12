@@ -310,7 +310,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~sending data to mongodb~~
 - ~~contenerize viz~~
 - ~~python 3~~
-- lightweight distro for container (debian/alpine)
+- ~~lightweight distro for container~~ (idea abandoned as per: https://pythonspeed.com/articles/alpine-docker-python/)
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
