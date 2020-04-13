@@ -300,7 +300,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - rpi2dynamodb_onlypm.py (excludes dht11 data)
 
 ## TODO
-- ~~temperature and humidity sensor to viz~~
+- ~~add temperature and humidity sensor~~
 - ~~a javascript viz~~
 - ~~add PM2.5=25 limit threshold line~~
 - ~~new layout~~
@@ -311,6 +311,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~contenerize viz~~
 - ~~python 3~~
 - ~~lightweight distro for container~~ (idea abandoned as per: https://pythonspeed.com/articles/alpine-docker-python/)
+- add barometer
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
