@@ -132,6 +132,21 @@ def update_temp():
 	lasttemp = 'Temperature: ' + str(lastpm['temp']) + '°C'
 	return lasttemp
 
+# app callback for dew point update
+@app.callback(Output('update-dp', 'children'),
+		events=[Event('event-update', 'interval')])
+
+# function for latest results
+def update_dp():
+	
+	# re-scan the table and get last temp
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lasthum = lastpm['hum']
+	lasttemp = lastpm['temp']
+	lastdp = lasttemp - (100 - lasthum)/5
+	lastdp = 'Dew point: ' + str(int(lastdp)) + '°C'
+	return lastdp
+
 # app callback for lastdt update
 @app.callback(Output('update-date', 'children'),
 		events=[Event('event-update', 'interval')])

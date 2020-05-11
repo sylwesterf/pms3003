@@ -376,6 +376,17 @@ def serve_layout_subset():
 	    'marginTop': 5,
 	    'marginLeft': 24
         }),
+		
+		# latest dp
+        html.Div(id='update-dp', children = 'Dew point: ' + str(generate_graph(table, dt_limit)['lastpm']['temp'] 
+		 - int((100 - generate_graph(table, dt_limit)['lastpm']['lasthum'])/5)))
+		  + '°C', style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 18,
+	    'marginTop': 5,
+	    'marginLeft': 24
+        }),
 	    
 		# last updated date
         html.Div(id='update-date', children = 'Last update: ' + generate_graph(table, dt_limit)['lastdt'], style={
