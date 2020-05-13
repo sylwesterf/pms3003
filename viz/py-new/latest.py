@@ -143,7 +143,7 @@ def update_dp():
 	lastpm = generate_graph(table, dt_limit)['lastpm']
 	lasthum = lastpm['hum']
 	lasttemp = lastpm['temp']
-	lastdp = lasttemp - (100 - lasthum)/5
+	lastdp = int(lasttemp) - (100 - int(lasthum))/5
 	lastdp = 'Dew point: ' + str(int(lastdp)) + '°C'
 	return lastdp
 
