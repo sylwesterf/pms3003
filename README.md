@@ -153,7 +153,7 @@ Update the following in *rpi2mongodb.py* file:
 
 ##### Flask - NEW (hosted on AWS EC2) 
 Flask application assumes a DynamoDB table is created and populated using a solution described in DynamoDB section under 2. Data transfer and storage. </br>
-Attach an IAM role to EC2 for DynamoDB Read and S3 Upload.</br>
+Attach an IAM role to EC2 for DynamoDB Read.</br>
 Add commands below to EC2 user data when launching an instance or ssh into it and run it afterwards.</br>
 Update variables AWS_REGION and DYNAMODB_TABLE with your AWS region and DynamoDB table name (see sample).</br>
 You can also set DASH_USR and DASH_PWD variables that are going to be used to authenticate into one of the app routes - /all </br>
@@ -207,7 +207,7 @@ sudo systemctl start docker
 sudo docker pull sylwesterf/pms3003:latest
 sudo docker images -a
 
-# run a container (attach an IAM role to EC2 for DynamoDB Read and S3 Upload)
+# run a container (attach an IAM role to EC2 for DynamoDB Read)
 sudo docker run -p 80:8000 -e AWS_REGION="xyz" -e DYNAMODB_TABLE="xyz" -e DT_FILTER=21 sylwesterf/pms3003:latest
 #sudo docker run -p 80:8000 -e AWS_REGION="eu-central-1" -e DYNAMODB_TABLE="pms3003" -e DT_FILTER=6 sylwesterf/pms3003:latest
 ```
@@ -228,7 +228,7 @@ sudo docker run -p 80:8000 -e AWS_REGION="xyz" -e DYNAMODB_TABLE="xyz" -e DT_FIL
 
 ##### Flask - OLD (hosted on AWS EC2) 
 Flask application assumes a DynamoDB table is created and populated using a solution described in DynamoDB section under 2. Data transfer and storage. </br>
-Attach an IAM role to EC2 for DynamoDB Read and S3 Upload.</br>
+Attach an IAM role to EC2 for DynamoDB Read.</br>
 Add commands below to EC2 user data when launching an instance or ssh into it and run it afterwards.</br>
 Update variables AWS_REGION and DYNAMODB_TABLE with your AWS region and DynamoDB table name (see sample).</br>
 
