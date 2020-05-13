@@ -55,3 +55,6 @@ printf "pwd = [['$3', '$4']]" > file.py
 
 # test in windows env
 #waitress-serve wsgi:application
+
+# manual wsgi run
+/bin/bash -c ". /opt/pms3003/flask/bin/activate; gunicorn --timeout 60 --bind 0.0.0.0:80 wsgi:application &"
