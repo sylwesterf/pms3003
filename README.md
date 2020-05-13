@@ -194,6 +194,11 @@ Flask app directory:
 └── requirements.txt
 ```
 
+##### Flask - NEW (non AWS)
+Flask application assumes a DynamoDB table is created and populated using a solution described in DynamoDB section under 2. Data transfer and storage. </br>
+If you want to use a compute service from a different provider than AWS an IAM user with programmatic access needs to be created and then configured on a destination server (install awscli and run aws configure).</br>
+The same set of commands (as for EC2) can be used for deployment; ssh into an instance, update variables (AWS_REGION, DYNAMODB_TABLE, DASH_USR, DASH_PWD) and run a prep.sh script.
+
 ##### Flask - Docker
 Flask application assumes a DynamoDB table is created and populated using a solution described in DynamoDB section under 2. Data transfer and storage. </br>
 Pull an image from DockerHub repo and run a container with setting environment variables for AWS Region, DynamoDB table name (default is *'pms3003'*) and number of days to display on graph (default is 21).
