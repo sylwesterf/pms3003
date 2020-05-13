@@ -317,7 +317,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~python 3~~
 - ~~lightweight distro for container~~ (idea abandoned as per: https://pythonspeed.com/articles/alpine-docker-python/)
 - add barometer
-- cloud provider agnostic deployment
+- ~~cloud provider agnostic deployment~~
 
 ## Acknowledgments
 - https://github.com/Thomas-Tsai/pms3003-g3
