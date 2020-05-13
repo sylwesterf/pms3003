@@ -378,8 +378,8 @@ def serve_layout_subset():
         }),
 		
 		# latest dp
-        html.Div(id='update-dp', children = 'Dew point: ' + str(generate_graph(table, dt_limit)['lastpm']['temp'] 
-		 - int((100 - generate_graph(table, dt_limit)['lastpm']['lasthum'])/5)))
+        html.Div(id='update-dp', children = 'Dew point: ' + str(int(generate_graph(table, dt_limit)['lastpm']['temp']) 
+		 - int((100 - int(generate_graph(table, dt_limit)['lastpm']['hum']))/5))
 		  + '°C', style={
             'textAlign': 'left',
             'color': colors['text'],
