@@ -22,8 +22,8 @@ def index():
 <body>  
     <h2>Air quality monitoring station: </h2>
     <ul>
-        <li>Last 50 days of data: <a href="/latest">/latest</a></li>
-        <li>All data: <a href="/all">/all</a></li>
+        <li>Last 50 days of data: <a href="/latest/">/latest</a></li>
+        <li>All data: <a href="/all/">/all</a></li>
     </ul>
     </br>
     <a href="https://github.com/sylwesterf/pms3003">Github repo</a>
