@@ -27,8 +27,8 @@ def index():
         <li><a href="http://sylwesterf.s3-website.eu-central-1.amazonaws.com">plotly.js implementation on S3</a></li>
         <li>Flask deployment on EC2: 
             <ul>
-            <li>Last 50 days of data: <a href="/latest">/latest</a></li>
-            <li>All data: <a href="/all">/all</a></li>
+            <li>Last 50 days of data: <a href="/latest/">/latest</a></li>
+            <li>All data: <a href="/all/">/all</a></li>
             </ul>
         </li>
     </ul>
