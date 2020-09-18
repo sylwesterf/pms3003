@@ -6,7 +6,7 @@
 ![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
 This project consists of three parts:
-1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor (+DHT22 for temperature and humidity, +BMP180 for pressure)
+1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor (+DHT22 for temperature and humidity, +BMP180 for air pressure)
 2. Data transfer and storage (MySQL/DynamoDB/S3/MongoDB/Kafka) 
 3. Data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2/github.io)
 
