@@ -6,7 +6,7 @@
 ![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
 This project consists of three parts:
-1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor
+1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor (+DHT22 for temperature and humidity)
 2. Data transfer and storage (MySQL/DynamoDB/S3/MongoDB/Kafka) 
 3. Data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2/github.io)
 
@@ -40,9 +40,9 @@ Connect PMS3003 to Raspberry Pi as per sensor datasheet:
 | TxD           | RxD           |
 
 
-Connect DHT11 (3 PIN) to Raspberry Pi as per sensor datasheet:
+Connect DHT22 (3 PIN) to Raspberry Pi as per sensor datasheet:
 
-| PMS3003       | Rpi           |
+| DHT22         | Rpi           |
 |           --- |---            |
 | VCC           | +3.3V         |
 | OUT           | GPIO7 (BCM)   |
