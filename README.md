@@ -6,7 +6,7 @@
 ![lic](https://img.shields.io/github/license/sylwesterf/pms3003.svg)
 
 This project consists of three parts:
-1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor (+DHT22 for temperature and humidity)
+1. Air quality monitoring station based of Raspberry Pi Zero W and PMS3003 sensor (+DHT22 for temperature and humidity, +BMP180 for pressure)
 2. Data transfer and storage (MySQL/DynamoDB/S3/MongoDB/Kafka) 
 3. Data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2/github.io)
 
@@ -45,8 +45,17 @@ Connect DHT22 (3 PIN) to Raspberry Pi as per sensor datasheet:
 | DHT22         | Rpi           |
 |           --- |---            |
 | VCC           | +3.3V         |
-| OUT           | GPIO7 (BCM)   |
 | GND           | GND           |
+| OUT           | GPIO7 (BCM)   |
+
+To add BMP180 you need to enable i2c first and install as per https://github.com/adafruit/Adafruit_Python_BMP. Connect as per sensor datasheet:
+
+| BMP180        | Rpi           |
+|           --- |---            |
+| VCC           | +3.3V         |
+| GND           | GND           |
+| SDA           | SDA           |
+| SCL           | SCL           |
 
 Test the set up. Make sure you specify a correct path to gpio serial port for device variable (line 9) and select appropriate value for environment variable (line 10) - 0/1 for a sensor placed outdoor/indoor respectively. Use *serial-test.py* (scripts folder) to troubleshoot issues with serial port configuration.
 
@@ -302,7 +311,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - manual-load-from-csv.py (perfrom a manual load from csv to DynamoDB)
 - power-consumption.sh (reduce RasberryPi W power consumption)
 - serial-test.py (test gpio port)
-- rpi2dynamodb_onlypm.py (excludes dht11 data)
+- rpi2dynamodb_onlypm.py (excludes dht11,bmp180 data)
 
 ## TODO
 - ~~add temperature and humidity sensor~~
@@ -325,6 +334,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - https://github.com/szazo/DHT11_Python
 - https://github.com/okomarov/dash_on_flask
 - https://medium.com/@kmmanoj/deploying-a-scalable-flask-app-using-gunicorn-and-nginx-in-docker-part-1-3344f13c9649
+- https://github.com/adafruit/Adafruit_Python_BMP
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
