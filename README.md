@@ -325,7 +325,7 @@ Refer to *pms3003/scripts/* for helpful scripts: </br>
 - ~~contenerize viz~~
 - ~~python 3~~
 - ~~lightweight distro for container~~ (idea abandoned as per: https://pythonspeed.com/articles/alpine-docker-python/)
-- add barometer
+- ~~add barometer~~
 - ~~cloud provider agnostic deployment~~
 
 ## Acknowledgments
