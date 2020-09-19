@@ -147,6 +147,18 @@ def update_dp():
 	lastdp = 'Dew point: ' + str(int(lastdp)) + '°C'
 	return lastdp
 
+# app callback for press update
+@app.callback(Output('update-press', 'children'),
+		events=[Event('event-update', 'interval')])
+        
+# function for latest results
+def update_press():
+	
+	# re-scan the table and get last press
+	lastpm = generate_graph(table, dt_limit)['lastpm']
+	lastpress = 'Air pressure: ' + str(int(lastpm['press'])/100.00) + 'hPa'
+	return lastpress
+
 # app callback for lastdt update
 @app.callback(Output('update-date', 'children'),
 		events=[Event('event-update', 'interval')])

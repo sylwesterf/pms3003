@@ -26,16 +26,16 @@ def dynamo_scan(table, filter=0):
     data = response['Items']
     
     # create a pandas dataframe, wrangle the data
-    df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum']).sort_values('dt').set_index('dt')
+    df = pd.DataFrame(data, columns=['dt','pm1','pm25','pm10','temp','hum','press']).sort_values('dt').set_index('dt')
     df.index = pd.to_datetime(df.index)
-    df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
+    df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '% | press: ' + str(int(x['press'])/100.00) + 'hPa'), axis=1)
 
     return df
 
 def csv_scan(file):
     
     # read csv, create a pandas dataframe and wrange the data
-    df = pd.read_csv("output.csv")[['dt','pm1','pm25','pm10','temp','hum']].sort_values('dt').set_index('dt')
+    df = pd.read_csv("output.csv")[['dt','pm1','pm25','pm10','temp','hum','press']].sort_values('dt').set_index('dt')
     df.index = pd.to_datetime(df.index)
     df['info'] = df.apply(lambda x: '' if pd.isnull(x['temp']) else ('temp: ' + str(int(x['temp'])) + '°C | hum: ' + str(int(x['hum'])) + '%'), axis=1)
 
@@ -277,7 +277,7 @@ def generate_graph(table, filter=0):
 	
 	
 	# get last measurements 
-	lastpm = df[['pm25', 'pm10', 'pm1', 'temp', 'hum']].iloc[-1]
+	lastpm = df[['pm25', 'pm10', 'pm1', 'temp', 'hum', 'press']].iloc[-1]
 
 	# return quasi-live data
 	return {'data': data, 'layout': layout, 'firstdt': firstdt, 'lastdt': lastdt, 'lastpm': lastpm}
@@ -381,6 +381,16 @@ def serve_layout_subset():
         html.Div(id='update-dp', children = 'Dew point: ' + str(int(generate_graph(table, dt_limit)['lastpm']['temp']) 
 		 - int((100 - int(generate_graph(table, dt_limit)['lastpm']['hum']))/5))
 		  + '°C', style={
+            'textAlign': 'left',
+            'color': colors['text'],
+            'fontSize': 18,
+	    'marginTop': 5,
+	    'marginLeft': 24
+        }),
+        
+        # latest press
+        html.Div(id='update-press', children = 'Air pressure: ' + str(int(generate_graph(table, dt_limit)['lastpm']['press'])/100.00)
+		  + 'hPa', style={
             'textAlign': 'left',
             'color': colors['text'],
             'fontSize': 18,
