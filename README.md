@@ -10,7 +10,7 @@ This project consists of three parts:
 2. Data transfer and storage (MySQL/DynamoDB/S3/MongoDB/Kafka) 
 3. Data visualization (Plotly/Chart.js/R Shiny/Flask hosted on S3/EC2/github.io)
 
-https://smog.cf/</br>
+http://smog.cf/</br>
 http://sylwesterf.s3-website.eu-central-1.amazonaws.com/</br>
 https://sylwesterf.github.io/
 
